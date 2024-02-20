@@ -7,7 +7,313 @@
 <body>
     <h1>Main Page</h1>
 
+    <button type="button" class="button" onclick="logout()" id="logoutButton">Logout</button>
+    <button type="button" class="button" id="createStudyGroupButton">Create New Study Group</button>
+
+    <!-- The Create Study Group Modal -->
+    <div id="createStudyGroupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="studyGroupXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent">Create Study Group</h2>
+                    <p class="modalHeaderContent" id="requiredFieldsLabel">* fields are required</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-content">
+                    <label for="name">*Study Group Name</label>
+                    <input class="input" type="text" id="name">
+                    <p class="rqFieldWarning" id="nameWarning"></p>
+                    <label for="isPublic">*Group Privacy</label>
+                    <div id="isPublicDiv">
+                        <label class="checkbox" for="publicChk">Public</label>
+                        <input type="radio" name="privacyType" id="publicChk">
+                        <label class="checkbox" for="privateChk">Private</label>
+                        <input type="radio" name="privacyType" id="privateChk">
+                    </div>
+                    <p class="rqFieldWarning" id="privacyWarning"></p>
+                    <label for="maxParticipants">*Max Participants</label>
+                    <input class="input" type="number" id="maxParticipants" min="0">
+                    <p class="rqFieldWarning" id="maxParticipantsWarning"></p>
+                    <label for="startDate">Start Date</label>
+                    <input class="input" type="date" id="startDate">
+                    <p class="rqFieldWarning" id="startDateWarning"></p>
+                    <label for="endDate">End Date</label>
+                    <input class="input" type="date" id="endDate">
+                    <p class="rqFieldWarning" id="endDateWarning"></p>
+                </div>
+                <div class="modal-body-content">
+                    <div>
+                        <p class="rqFieldWarning" id="meetingTimesWarning"></p>
+                        <label for="meetingTimes">Meeting Times</label>
+                        <button type="button" class="button" id="addMeetingTimeBtn">+</button>
+                        <button type="button" class="button" id="deleteMeetingTimeBtn">-</button>
+                    </div>
+                    <div id="meetingTime0">
+                        <input class="input, meetingDay" type="text" id="meetingDay1" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="meetingTime1" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="meetingLocation1" placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="meetingTimeDiv1">
+                        <input class="input, meetingDay" type="text" id="meetingDay2" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="meetingTime2" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="meetingLocation2" placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="meetingTimeDiv2">
+                        <input class="input, meetingDay" type="text" id="meetingDay3" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="meetingTime3" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="meetingLocation3" placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="meetingTimeDiv3">
+                        <input class="input, meetingDay" type="text" id="meetingDay4" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="meetingTime4" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="meetingLocation4" placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="meetingTimeDiv4">
+                        <input class="input, meetingDay" type="text" id="meetingDay5" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="meetingTime5" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="meetingLocation5" placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="meetingTimeDiv5">
+                        <input class="input, meetingDay" type="text" id="meetingDay6" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="meetingTime6" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="meetingLocation6" placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="meetingTimeDiv6">
+                        <input class="input, meetingDay" type="text" id="meetingDay7" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="meetingTime7" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="meetingLocation7" placeholder="Location">
+                    </div>
+                    <label for="description">Study Group Description</label>
+                    <input class="input" type="text" id="description">
+                    <label for="school">School for Study Group</label>
+                    <input class="input" type="text" id="school" placeholder="Bridgewater College">
+                    <label for="courseNum">Course Number</label>
+                    <input class="input" type="text" id="courseNum" placeholder="CSCI-100">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button" id="submitNewStudyGroupBtn" onclick="createNewStudyGroup()">Create
+                    Study Group</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
+    <script src="js/createStudyGroupModal.js"></script>
 </body>
+
+<style>
+    #meetingTime0 {
+        margin-bottom: 7.5px;
+    }
+
+    #addMeetingTimeBtn {
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    #deleteMeetingTimeBtn {
+        padding-left: 3.5px;
+        padding-right: 3.5px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    .meetingDay {
+        width: 70px;
+    }
+
+    .meetingTime {
+        width: 40px;
+    }
+
+    .meetingLocation {
+        width: 90px;
+    }
+
+    .meetingTimeInput {
+        display: none;
+        margin-bottom: 7.5px;
+    }
+
+    .modal-body-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #isPublicDiv {
+        scale: 70%;
+        padding: 5px;
+    }
+
+    .rqFieldWarning {
+        color: red;
+        display: none;
+        margin-top: -3px;
+        margin-bottom: 4px;
+        font-size: x-small;
+    }
+
+    #loginError {
+        color: red;
+        text-decoration: underline;
+        display: none;
+    }
+
+    .white-space {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border: 2px solid black;
+        padding: 7px;
+        border-radius: 5px;
+        margin: 8px;
+    }
+
+    body {
+        background-color: #5cb85c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 10%;
+        padding: 30px;
+        color: black;
+    }
+
+    .button {
+        justify-content: center;
+        width: fit-content;
+        border-radius: 3px;
+        background-color: white;
+        padding: 7px;
+        margin: 5px;
+    }
+
+    .input {
+        justify-content: center;
+        width: fit-content;
+        margin: 5px;
+    }
+
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        margin-bottom: 100px;
+        /* Location of the box */
+        left: 0;
+        top: 20px;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: scroll;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        scale: 115%;
+        border: 2px solid black;
+        border-radius: 5px;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: fit-content;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+
+    @keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+    }
+
+    .modalHeaderContent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #requiredFieldsLabel {
+        font-size: x-small;
+        margin-top: -14px;
+    }
+
+    .modal-body {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .modal-footer {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
 
 </html>
