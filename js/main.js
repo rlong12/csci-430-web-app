@@ -16,7 +16,11 @@ async function logout() {
     let response = await fetch(url, options)
 
     if(response.status === 200) {
+        console.log("logout successful");
         localStorage.removeItem("token");
         location.href = "index.html";
+    }
+    else {
+        console.log("Error logging out");
     }
 }
