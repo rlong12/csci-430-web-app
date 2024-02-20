@@ -15,8 +15,8 @@ async function login() {
   let userName = document.getElementById("loginEmail").value;
   let userPassword = document.getElementById("loginPassword").value;
 
-  let url = "http://127.0.0.1:3000/user/login";
-  //let url = "https://csci430-node-server.azurewebsites.net/user/login"
+  //let url = "http://127.0.0.1:3000/user/login";
+  let url = "https://csci430-node-server.azurewebsites.net/user/login"
 
   let data = {
     email: userName,

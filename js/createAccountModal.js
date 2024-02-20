@@ -46,8 +46,8 @@ async function createNewUser() {
     document.getElementById("verifyPwWarning").style.display = "none";
     passwordsMatch = true;
   }
-  let url = "http://127.0.0.1:3000/user";
-  //let url = "https://csci430-node-server.azurewebsites.net/user"
+  //let url = "http://127.0.0.1:3000/user";
+  let url = "https://csci430-node-server.azurewebsites.net/user"
 
   if (userEmail.localeCompare("") === 0) {
     document.getElementById("emailWarning").innerHTML = "Email is required";
