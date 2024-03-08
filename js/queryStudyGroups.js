@@ -166,7 +166,7 @@ async function queryStudyGroups() {
   if (response.status === 200) {
     const body = await response.json();
 
-    modal.display = "none";
+    modal.style.display = "none";
 
     clearResults();
 
