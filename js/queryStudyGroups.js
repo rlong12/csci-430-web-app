@@ -24,13 +24,20 @@ window.onclick = function (event) {
   }
 };
 
+function clearResults() {
+  let resultsDiv = document.getElementById("searchResults");
+  while (resultsDiv.firstChild) {
+    resultsDiv.removeChild(resultsDiv.lastChild);
+  }
+}
+
 function display(data) {
   console.log(data);
   let resultsDiv = document.getElementById("searchResults");
   /*while (resultsDiv.firstChild) {
     resultsDiv.removeChild(resultsDiv.lastChild);
   }*/
-  resultsDiv.innerHTML = '';
+  //resultsDiv.innerHTML = '';
 
   let groupName = document.createElement("h3");
   groupName.innerHTML = data.name;
@@ -160,6 +167,8 @@ async function queryStudyGroups() {
     const body = await response.json();
 
     modal.display = "none";
+
+    clearResults();
 
     for (let i = 0; i <= body.length; i++) {
       display(body[i]);
