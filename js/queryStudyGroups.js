@@ -27,6 +27,9 @@ window.onclick = function (event) {
 function display(data) {
   console.log(data);
   let resultsDiv = document.getElementById("searchResults");
+  while (resultsDiv.firstChild) {
+    resultsDiv.removeChild(resultsDiv.lastChild);
+  }
 
   let groupName = document.createElement("h3");
   groupName.innerHTML = data.name;
