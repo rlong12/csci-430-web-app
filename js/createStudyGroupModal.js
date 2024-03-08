@@ -137,8 +137,8 @@ async function createNewStudyGroup() {
   console.log("Start date: " + startDate);
   console.log("End date: " + endDate);
 
-  //let url = "http://127.0.0.1:3000/studygroup";
-  let url = "https://csci430-node-server.azurewebsites.net/studygroup";
+  let url = "http://127.0.0.1:3000/studygroup";
+  //let url = "https://csci430-node-server.azurewebsites.net/studygroup";
 
   if (groupName.localeCompare("") === 0) {
     document.getElementById("nameWarning").innerHTML =
@@ -153,7 +153,7 @@ async function createNewStudyGroup() {
   ) {
     //code to add warning about public chk
   }
-  if (maxParticipants === 0) {
+  if (maxParticipants === 0 || maxParticipants < 0) {
     document.getElementById("maxParticipantsWarning").innerHTML =
       "Max participants is required";
     document.getElementById("maxParticipantsWarning").style.display = "block";
@@ -201,7 +201,7 @@ async function createNewStudyGroup() {
   const options = {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),

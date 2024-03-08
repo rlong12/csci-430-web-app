@@ -13,6 +13,8 @@ async function logout() {
         }
     }
 
+    console.log(token);
+
     let response = await fetch(url, options)
 
     if(response.status === 200) {

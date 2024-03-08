@@ -9,6 +9,11 @@
 
     <button type="button" class="button" onclick="logout()" id="logoutButton">Logout</button>
     <button type="button" class="button" id="createStudyGroupButton">Create New Study Group</button>
+    <button type="button" class="button" id="searchStudyGroupButton">Search Study Groups</button>
+    <br>
+    <div class="modal-body-content" id="searchResults">
+        <h2>Search Results</h2>
+    </div>
 
     <!-- The Create Study Group Modal -->
     <div id="createStudyGroupModal" class="modal">
@@ -18,7 +23,7 @@
                 <h3 class="modalHeaderContent">Create Study Group</h2>
                     <p class="modalHeaderContent" id="requiredFieldsLabel">* fields are required</p>
             </div>
-            <div class="modal-body">
+            <div class="modal-body-content">
                 <div class="modal-body-content">
                     <label for="name">*Study Group Name</label>
                     <input class="input" type="text" id="name">
@@ -98,8 +103,48 @@
         </div>
     </div>
 
+    <!-- The Search Study Groups Modal -->
+    <div id="searchStudyGroupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="searchStudyGroupXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent">Search for Study Groups</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-content">
+                    <label for="querySearch">Search for:</label>
+                    <input class="input" type="text" id="querySearch">
+                    <label for="queryOngoing">Ongoing</label>
+                    <div id="queryOngoingDiv">
+                        <label class="checkbox" for="queryYesChk">Yes</label>
+                        <input type="radio" name="queryOngoingType" id="queryYesChk">
+                        <label class="checkbox" for="queryNoChk">No</label>
+                        <input type="radio" name="queryOngoingType" id="queryNoChk">
+                    </div>
+                    <label for="querySkip">Skip</label>
+                    <input class="input" type="number" id="querySkip" min="1" max="10">
+                    <label for="queryLimit">Limit</label>
+                    <input class="input" type="number" id="queryLimit">
+                    <label for="querySortBy">Sorty By</label>
+                    <div id="querySortByDiv">
+                        <label class="checkbox" for="queryAscChk">Ascending</label>
+                        <input type="radio" name="querySortType" id="queryAscChk">
+                        <label class="checkbox" for="queryDescChk">Descending</label>
+                        <input type="radio" name="querySortType" id="queryDescChk">
+                    </div>
+                </div>
+                <div class="modal-body-content">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button" id="queryStudyGroupBtn" onclick="queryStudyGroups()">Query Study Groups</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/createStudyGroupModal.js"></script>
+    <script src="js/queryStudyGroups.js"></script>
 </body>
 
 <style>
