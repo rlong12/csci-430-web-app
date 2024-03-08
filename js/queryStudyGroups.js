@@ -27,9 +27,10 @@ window.onclick = function (event) {
 function display(data) {
   console.log(data);
   let resultsDiv = document.getElementById("searchResults");
-  while (resultsDiv.firstChild) {
+  /*while (resultsDiv.firstChild) {
     resultsDiv.removeChild(resultsDiv.lastChild);
-  }
+  }*/
+  resultsDiv.innerHTML = '';
 
   let groupName = document.createElement("h3");
   groupName.innerHTML = data.name;
