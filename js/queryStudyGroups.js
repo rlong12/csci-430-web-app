@@ -152,8 +152,8 @@ function display(data) {
       }
       document.getElementById("editMaxParticipants").value =
         data.max_participants;
-      document.getElementById("editStartDate").value = data.start_date;
-      document.getElementById("editEndDate").value = data.end_date;
+      document.getElementById("editStartDate").value = data.start_date.slice(0,10);
+      document.getElementById("editEndDate").value = data.end_date.slice(0,10);
       document.getElementById("editDescription").value = data.description;
       document.getElementById("editSchool").value = data.school;
       document.getElementById("editCourseNum").value = data.course_number;
@@ -244,12 +244,13 @@ async function queryStudyGroups() {
 
   if (response.status === 200) {
     const body = await response.json();
+    console.log(body)
 
     queryStudyGroupModal.style.display = "none";
 
     clearResults();
 
-    for (let i = 0; i <= body.length; i++) {
+    for (let i = 0; i < body.length; i++) {
       console.log(body[i]);
       display(body[i]);
     }
