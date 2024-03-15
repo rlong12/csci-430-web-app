@@ -60,9 +60,19 @@ function display(data) {
   console.log(data);
   let resultsDiv = document.getElementById("searchResults");
 
-  let containerDiv = document.createElement("div");
+  let groupContainer = document.createElement("div");
 
-  let groupName = document.createElement("h3");
+  let header = document.createElement("div");
+
+  let bodyContainer = document.createElement("div");
+
+  let containerDiv1 = document.createElement("div");
+  let containerDiv2 = document.createElement("div");
+  let containerDiv3 = document.createElement("div");
+
+  let footer = document.createElement("div");
+
+  let groupName = document.createElement("h2");
   groupName.innerHTML = data.name;
 
   let max_participantsLabel = document.createElement("h5");
@@ -74,14 +84,14 @@ function display(data) {
   start_dateLabel.innerHTML = "Start Date";
   let start_date = document.createElement("p");
   if(data.start_date) {
-    start_date.innerHTML = data.start_date;
+    start_date.innerHTML = data.start_date.slice(0,10);
   }
 
   let end_dateLabel = document.createElement("h5");
   end_dateLabel.innerHTML = "End Date";
   let end_date = document.createElement("p");
   if(data.end_date) {
-    end_date.innerHTML = data.end_date;
+    end_date.innerHTML = data.end_date.slice(0,10);
   }
 
   let meetingTimesLabel = document.createElement("h5");
@@ -108,23 +118,27 @@ function display(data) {
   let course_number = document.createElement("p");
   course_number.innerHTML = data.course_number;
 
-  containerDiv.appendChild(groupName);
-  containerDiv.appendChild(max_participantsLabel);
-  containerDiv.appendChild(max_participants);
-  containerDiv.appendChild(start_dateLabel);
-  containerDiv.appendChild(start_date);
-  containerDiv.appendChild(end_dateLabel);
-  containerDiv.appendChild(end_date);
-  containerDiv.appendChild(meetingTimesLabel);
-  containerDiv.appendChild(meetingTimesDiv);
-  containerDiv.appendChild(descriptionLabel);
-  containerDiv.appendChild(description);
-  containerDiv.appendChild(schoolLabel);
-  containerDiv.appendChild(school);
-  containerDiv.appendChild(course_numberLabel);
-  containerDiv.appendChild(course_number);
-  containerDiv.appendChild(document.createElement("br"));
-  containerDiv.className = "searchResult";
+  header.appendChild(groupName);
+  containerDiv1.appendChild(max_participantsLabel);
+  containerDiv1.appendChild(max_participants);
+  containerDiv1.appendChild(start_dateLabel);
+  containerDiv1.appendChild(start_date);
+  containerDiv1.appendChild(end_dateLabel);
+  containerDiv1.appendChild(end_date);
+  containerDiv2.appendChild(meetingTimesLabel);
+  containerDiv2.appendChild(meetingTimesDiv);
+  containerDiv3.appendChild(descriptionLabel);
+  containerDiv3.appendChild(description);
+  containerDiv3.appendChild(schoolLabel);
+  containerDiv3.appendChild(school);
+  containerDiv3.appendChild(course_numberLabel);
+  containerDiv3.appendChild(course_number);
+  containerDiv3.appendChild(document.createElement("br"));
+  containerDiv1.className = "searchResult";
+  containerDiv2.className = "searchResult";
+  containerDiv3.className = "searchResult";
+  groupContainer.className = "searchResultGroup";
+  bodyContainer.className = "searchResultBodyContainer";
 
   let userID = localStorage.getItem("userID");
   let owner = data.owner;
@@ -137,7 +151,7 @@ function display(data) {
     editButton.innerHTML = "Edit";
     editButton.style.backgroundColor = "#5cb85c";
     editButton.id = "editStudyGroupButton";
-    containerDiv.appendChild(editButton);
+    footer.appendChild(editButton);
 
     editButton.onclick = function () {
       localStorage.setItem("studyGroupID", data._id);
@@ -164,7 +178,14 @@ function display(data) {
     };
   }
 
-  resultsDiv.appendChild(containerDiv);
+  groupContainer.appendChild(header);
+  bodyContainer.appendChild(containerDiv1);
+  bodyContainer.appendChild(containerDiv2);
+  bodyContainer.appendChild(containerDiv3);
+  groupContainer.appendChild(bodyContainer);
+  groupContainer.appendChild(footer);
+
+  resultsDiv.appendChild(groupContainer);
 }
 
 async function queryStudyGroups() {
