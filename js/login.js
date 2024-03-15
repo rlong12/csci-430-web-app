@@ -38,8 +38,9 @@ async function login() {
     console.log(body);
     console.log(JSON.stringify(body.user));
 
-    localStorage.setItem("user", JSON.stringify(body.user));
+    localStorage.setItem("user", body.user);
     localStorage.setItem("token", body.token);
+    localStorage.setItem("userID", body.user._id);
 
     location.href = "main.html";
   } else if (response.status === 401) {

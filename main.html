@@ -12,7 +12,7 @@
     <button type="button" class="button" id="searchStudyGroupButton">Search Study Groups</button>
     <br>
     <h2>Search Results</h2>
-    <div class="modal-body-content" id="searchResults"></div>
+    <div class="modal-body" id="searchResults"></div>
 
     <!-- The Create Study Group Modal -->
     <div id="createStudyGroupModal" class="modal">
@@ -22,7 +22,7 @@
                 <h3 class="modalHeaderContent">Create Study Group</h2>
                     <p class="modalHeaderContent" id="requiredFieldsLabel">* fields are required</p>
             </div>
-            <div class="modal-body-content">
+            <div class="modal-body">
                 <div class="modal-body-content">
                     <label for="name">*Study Group Name</label>
                     <input class="input" type="text" id="name">
@@ -107,7 +107,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span id="searchStudyGroupXBtn" class="close">&times;</span>
-                <h3 class="modalHeaderContent">Search for Study Groups</h2>
+                <h3 class="modalHeaderContent" id="queryStudyGroupHeader">Search for Study Groups</h2>
             </div>
             <div class="modal-body">
                 <div class="modal-body-content">
@@ -136,18 +136,123 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="button" id="queryStudyGroupBtn" onclick="queryStudyGroups()">Query Study Groups</button>
+                <button type="button" class="button" id="queryStudyGroupBtn" onclick="queryStudyGroups()">Query Study
+                    Groups</button>
             </div>
         </div>
+    </div>
+
+    <!-- The Edit Study Groups Modal -->
+    <div id="editStudyGroupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="editStudyGroupXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent">Edit Study Group</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-content">
+                    <label for="name">Study Group Name</label>
+                    <input class="input" type="text" id="editName">
+                    <label for="isPublic">Group Privacy</label>
+                    <div id="isPublicDiv">
+                        <label class="checkbox" for="publicChk">Public</label>
+                        <input type="radio" name="privacyType" id="editPublicChk">
+                        <label class="checkbox" for="privateChk">Private</label>
+                        <input type="radio" name="privacyType" id="editPrivateChk">
+                    </div>
+                    <label for="maxParticipants">Max Participants</label>
+                    <input class="input" type="number" id="editMaxParticipants" min="1" max="250">
+                    <label for="startDate">Start Date</label>
+                    <input class="input" type="date" id="editStartDate">
+                    <label for="endDate">End Date</label>
+                    <input class="input" type="date" id="editEndDate">
+                </div>
+                <div class="modal-body-content">
+                    <div>
+                        <p class="rqFieldWarning" id="editMeetingTimesWarning"></p>
+                        <label for="meetingTimes">Meeting Times</label>
+                        <button type="button" class="button" id="editAddMeetingTimeBtn">+</button>
+                        <button type="button" class="button" id="editDeleteMeetingTimeBtn">-</button>
+                    </div>
+                    <div id="editMeetingTime0">
+                        <input class="input, meetingDay" type="text" id="editMeetingDay1" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="editMeetingTime1" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="editMeetingLocation1"
+                            placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="editMeetingTimeDiv1">
+                        <input class="input, meetingDay" type="text" id="editMeetingDay2" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="editMeetingTime2" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="editMeetingLocation2"
+                            placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="editMeetingTimeDiv2">
+                        <input class="input, meetingDay" type="text" id="editMeetingDay3" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="editMeetingTime3" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="editMeetingLocation3"
+                            placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="editMeetingTimeDiv3">
+                        <input class="input, meetingDay" type="text" id="editMeetingDay4" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="editMeetingTime4" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="editMeetingLocation4"
+                            placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="editMeetingTimeDiv4">
+                        <input class="input, meetingDay" type="text" id="editMeetingDay5" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="editMeetingTime5" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="editMeetingLocation5"
+                            placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="editMeetingTimeDiv5">
+                        <input class="input, meetingDay" type="text" id="editMeetingDay6" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="editMeetingTime6" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="editMeetingLocation6"
+                            placeholder="Location">
+                    </div>
+                    <div class="meetingTimeInput" id="editMeetingTimeDiv6">
+                        <input class="input, meetingDay" type="text" id="editMeetingDay7" placeholder="Monday">
+                        <input class="input, meetingTime" type="text" id="editMeetingTime7" placeholder="10:30">
+                        <input class="input, meetingLocation" type="text" id="editMeetingLocation7"
+                            placeholder="Location">
+                    </div>
+                    <label for="description">Study Group Description</label>
+                    <input class="input" type="text" id="editDescription">
+                    <label for="school">School for Study Group</label>
+                    <input class="input" type="text" id="editSchool" placeholder="Bridgewater College">
+                    <label for="courseNum">Course Number</label>
+                    <input class="input" type="text" id="editCourseNum" placeholder="CSCI-100">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button" id="editStudyGroupBtn" onclick="editStudyGroup()">Save
+                    Changes</button>
+            </div>
+        </div>
+    </div>
     </div>
 
     <script src="js/main.js"></script>
     <script src="js/createStudyGroupModal.js"></script>
     <script src="js/queryStudyGroups.js"></script>
+    <script src="js/editStudyGroup.js"></script>
 </body>
 
 <style>
+    .searchResult {
+        background-color: white;
+        margin: 10px;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
     #meetingTime0 {
+        margin-bottom: 7.5px;
+    }
+
+    #editMeetingTime0 {
         margin-bottom: 7.5px;
     }
 

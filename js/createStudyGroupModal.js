@@ -1,26 +1,26 @@
 // Get the modal
-var modal = document.getElementById("createStudyGroupModal");
+var createGroupModal = document.getElementById("createStudyGroupModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("createStudyGroupButton");
+var createGroupBtn = document.getElementById("createStudyGroupButton");
 
 // Get the <span> element that closes the modal
-var span = document.getElementById("studyGroupXBtn");
+var createXBtn = document.getElementById("studyGroupXBtn");
 
 // When the user clicks the button, open the modal
-btn.onclick = function () {
-  modal.style.display = "block";
+createGroupBtn.onclick = function () {
+  createGroupModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
+createXBtn.onclick = function () {
+  createGroupModal.style.display = "none";
 };
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == createGroupModal) {
+    createGroupModal.style.display = "none";
   }
 };
 
@@ -212,7 +212,7 @@ async function createNewStudyGroup() {
 
     if (response.status == 201) {
       console.log("Study Group created!");
-      modal.style.display = "none";
+      createGroupModal.style.display = "none";
     } else if (response.status == 400) {
       console.log("Unable to create study group");
     }
