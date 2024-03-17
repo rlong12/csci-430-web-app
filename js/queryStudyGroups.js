@@ -26,16 +26,16 @@ window.onclick = function (event) {
 
 function loadMeetingTimes(times) {
   for (let k = 0; k < times.length; k++) {
-    let day = "editMeetingDay" + (k+1);
-    let time = "editMeetingTime" + (k+1);
-    let location = "editMeetingLocation" + (k+1);
+    let day = "editMeetingDay" + (k + 1);
+    let time = "editMeetingTime" + (k + 1);
+    let location = "editMeetingLocation" + (k + 1);
 
     let oldDay = times[k].day;
     let oldTime = times[k].time;
     let oldLocation = times[k].location;
 
-    if(k>0) {
-        document.getElementById('editMeetingTimeDiv' + k).style.display = "block";
+    if (k > 0) {
+      document.getElementById("editMeetingTimeDiv" + k).style.display = "block";
     }
     document.getElementById(day).value = oldDay;
     document.getElementById(time).value = oldTime;
@@ -44,9 +44,9 @@ function loadMeetingTimes(times) {
 }
 
 function hideMeetingTimes() {
-    for (let u = 1; u < 7; u++) {
-        document.getElementById('editMeetingTimeDiv' + u).style.display = "none";
-    }
+  for (let u = 1; u < 7; u++) {
+    document.getElementById("editMeetingTimeDiv" + u).style.display = "none";
+  }
 }
 
 function clearResults() {
@@ -83,23 +83,28 @@ function display(data) {
   let start_dateLabel = document.createElement("h5");
   start_dateLabel.innerHTML = "Start Date";
   let start_date = document.createElement("p");
-  if(data.start_date) {
-    start_date.innerHTML = data.start_date.slice(0,10);
+  if (data.start_date) {
+    start_date.innerHTML = data.start_date.slice(0, 10);
   }
 
   let end_dateLabel = document.createElement("h5");
   end_dateLabel.innerHTML = "End Date";
   let end_date = document.createElement("p");
-  if(data.end_date) {
-    end_date.innerHTML = data.end_date.slice(0,10);
+  if (data.end_date) {
+    end_date.innerHTML = data.end_date.slice(0, 10);
   }
 
   let meetingTimesLabel = document.createElement("h5");
   meetingTimesLabel.innerHTML = "Meeting Times";
   let meetingTimesDiv = document.createElement("div");
-  for(let r=0; r<data.meeting_times.length; r++) {
-   let info = document.createElement('p');
-   info.innerHTML = data.meeting_times[r].day + "s at " + data.meeting_times[r].time + " at " + data.meeting_times[r].location;
+  for (let r = 0; r < data.meeting_times.length; r++) {
+    let info = document.createElement("p");
+    info.innerHTML =
+      data.meeting_times[r].day +
+      "s at " +
+      data.meeting_times[r].time +
+      " at " +
+      data.meeting_times[r].location;
     meetingTimesDiv.appendChild(info);
   }
 
@@ -166,15 +171,41 @@ function display(data) {
       }
       document.getElementById("editMaxParticipants").value =
         data.max_participants;
-      document.getElementById("editStartDate").value = data.start_date.slice(0,10);
-      document.getElementById("editEndDate").value = data.end_date.slice(0,10);
-      document.getElementById("editDescription").value = data.description;
-      document.getElementById("editSchool").value = data.school;
-      document.getElementById("editCourseNum").value = data.course_number;
+      try {
+        document.getElementById("editStartDate").value = data.start_date.slice(
+          0,
+          10
+        );
+      } catch {
+        console.log("field empty");
+      }
+      try {
+        document.getElementById("editEndDate").value = data.end_date.slice(
+          0,
+          10
+        );
+      } catch {
+        console.log("field empty");
+      }
+      try {
+        document.getElementById("editDescription").value = data.description;
+      } catch {
+        console.log("field empty");
+      }
+      try {
+        document.getElementById("editSchool").value = data.school;
+      } catch {
+        console.log("field empty");
+      }
+      try {
+        document.getElementById("editCourseNum").value = data.course_number;
+      } catch {
+        console.log("field empty");
+      }
 
       hideMeetingTimes();
       loadMeetingTimes(data.meeting_times);
-      localStorage.setItem('numMeetingTimes', data.meeting_times.length);
+      localStorage.setItem("numMeetingTimes", data.meeting_times.length);
     };
   }
 
@@ -265,7 +296,7 @@ async function queryStudyGroups() {
 
   if (response.status === 200) {
     const body = await response.json();
-    console.log(body)
+    console.log(body);
 
     queryStudyGroupModal.style.display = "none";
 
