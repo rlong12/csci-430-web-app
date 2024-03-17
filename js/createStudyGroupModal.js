@@ -137,8 +137,8 @@ async function createNewStudyGroup() {
   console.log("Start date: " + startDate);
   console.log("End date: " + endDate);
 
-  let url = "http://127.0.0.1:3000/studygroup";
-  //let url = "https://csci430-node-server.azurewebsites.net/studygroup";
+  //let url = "http://127.0.0.1:3000/studygroup";
+  let url = "https://csci430-node-server.azurewebsites.net/studygroup";
 
   if (groupName.localeCompare("") === 0) {
     document.getElementById("nameWarning").innerHTML =
