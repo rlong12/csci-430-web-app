@@ -302,6 +302,11 @@ async function queryStudyGroups() {
 
     clearResults();
 
+    let resultsDiv = document.getElementById("searchResults");
+    let resultsHeader = document.createElement('h1');
+    resultsHeader.innerHTML = "Search Results";
+    resultsDiv.appendChild(resultsHeader);
+
     for (let i = 0; i < body.length; i++) {
       console.log(body[i]);
       display(body[i]);
