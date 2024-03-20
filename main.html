@@ -28,7 +28,7 @@
                     <input class="input" type="text" id="name">
                     <p class="rqFieldWarning" id="nameWarning"></p>
                     <label for="isPublic">*Group Privacy</label>
-                    <div id="isPublicDiv">
+                    <div class="radioDiv" id="isPublicDiv">
                         <label class="checkbox" for="publicChk">Public</label>
                         <input type="radio" name="privacyType" id="publicChk">
                         <label class="checkbox" for="privateChk">Private</label>
@@ -111,25 +111,32 @@
             </div>
             <div class="modal-body">
                 <div class="modal-body-content">
-                    <label for="querySearch">Search for:</label>
+                    <label for="querySearch">Search for</label>
                     <input class="input" type="text" id="querySearch">
                     <label for="queryOngoing">Ongoing</label>
-                    <div id="queryOngoingDiv">
+                    <div class="radioDiv" id="queryOngoingDiv">
                         <label class="checkbox" for="queryYesChk">Yes</label>
-                        <input type="radio" name="queryOngoingType" id="queryYesChk">
+                        <input class="input" type="radio" name="queryOngoingType" id="queryYesChk">
                         <label class="checkbox" for="queryNoChk">No</label>
-                        <input type="radio" name="queryOngoingType" id="queryNoChk">
+                        <input class="input" type="radio" name="queryOngoingType" id="queryNoChk">
                     </div>
                     <label for="querySkip">Skip</label>
                     <input class="input" type="number" id="querySkip" min="1" max="10">
                     <label for="queryLimit">Limit</label>
                     <input class="input" type="number" id="queryLimit">
-                    <label for="querySortBy">Sorty By</label>
-                    <div id="querySortByDiv">
+                    <label for="querySortByDiv">Sorty by</label>
+                    <div class="radioDiv" id="querySortByDiv">
                         <label class="checkbox" for="queryAscChk">Ascending</label>
-                        <input type="radio" name="querySortType" id="queryAscChk">
+                        <input class="input" type="radio" name="querySortType" id="queryAscChk">
                         <label class="checkbox" for="queryDescChk">Descending</label>
-                        <input type="radio" name="querySortType" id="queryDescChk">
+                        <input class="input" type="radio" name="querySortType" id="queryDescChk">
+                    </div>
+                    <label for="queryOwnerOnlyDiv">Your groups only?</label>
+                    <div class="radioDiv" id="queryOwnerOnlyDiv">
+                        <label class="checkbox" for="queryOwnerYes">Yes</label>
+                        <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerYes">
+                        <label class="checkbox" for="queryOwnerNo">No</label>
+                        <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerNo">
                     </div>
                 </div>
                 <div class="modal-body-content">
@@ -154,7 +161,7 @@
                     <label for="name">Study Group Name</label>
                     <input class="input" type="text" id="editName">
                     <label for="isPublic">Group Privacy</label>
-                    <div id="isPublicDiv">
+                    <div class="radioDiv" id="isPublicDiv">
                         <label class="checkbox" for="publicChk">Public</label>
                         <input type="radio" name="privacyType" id="editPublicChk">
                         <label class="checkbox" for="privateChk">Private</label>
@@ -239,6 +246,10 @@
 </body>
 
 <style>
+    .checkbox {
+        margin-bottom: 7px;
+    }
+
     .searchResult {
         background-color: white;
         margin: 10px;
@@ -312,8 +323,8 @@
         justify-content: center;
     }
 
-    #isPublicDiv {
-        scale: 70%;
+    .radioDiv {
+        scale: 80%;
         padding: 5px;
     }
 
@@ -365,6 +376,7 @@
         justify-content: center;
         width: fit-content;
         margin: 5px;
+        margin-bottom: 10px;
     }
 
     .modal {

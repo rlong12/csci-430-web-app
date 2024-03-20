@@ -41,7 +41,7 @@ function loadMeetingTimes(times) {
     document.getElementById(time).value = oldTime;
     document.getElementById(location).value = oldLocation;
 
-    localStorage.setItem("numMeetingTimes", k)
+    localStorage.setItem("numMeetingTimes", k);
   }
 }
 
@@ -232,6 +232,11 @@ async function queryStudyGroups() {
     isOngoing = false;
   }
 
+  let ownerOnly;
+  if (document.getElementById("queryOwnerYes").checked === true) {
+    ownerOnly = true;
+  }
+
   let sortByValue = "";
   if (document.getElementById("queryAscChk").checked === true) {
     sortByValue = "asc";
@@ -270,6 +275,15 @@ async function queryStudyGroups() {
     }
   }
 
+  console.log("Owner only: " + ownerOnly)
+  if (ownerOnly === true) {
+    if (queryString.localeCompare("?") != 0) {
+      queryString += "&mine=" + ownerOnly;
+    } else {
+      queryString += "mine=" + ownerOnly;
+    }
+  }
+
   if (document.getElementById("querySearch").value.localeCompare("") > 0) {
     if (queryString.localeCompare("?") != 0) {
       queryString += "&search=" + document.getElementById("querySearch").value;
@@ -305,7 +319,7 @@ async function queryStudyGroups() {
     clearResults();
 
     let resultsDiv = document.getElementById("searchResults");
-    let resultsHeader = document.createElement('h1');
+    let resultsHeader = document.createElement("h1");
     resultsHeader.innerHTML = "Search Results";
     resultsDiv.appendChild(resultsHeader);
 
