@@ -2,66 +2,226 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <title>The Social Pot</title>
+
 </head>
 
 <body>
-    <div class="container">
-        <h1>Please enter in your social media information</h1>
-
-        <div class="mb-3">
-            <h3>Instagram</h3>
-            <div class="mb-3">
-                <label for="instagram-user">Username</label>
-                <input type="text" id="instagram-user">
-                <label for="instagram-pw">Password</label>
-                <input type="password" id="instagram-pw">
-            </div>
+    <h1>
+        The Social Pot
+    </h1>
+    <div id="login">
+        <p>Please enter your phone number and password</p>
+        <p id="loginError"></p>
+        <div class="white-space">
+        <label for="email">Phone Number</label>
+        <input class="input" type="text" placeholder="7571113333" id="phone-number">
         </div>
-        <div class="mb-3">
-            <h3>Twitter</h3>
-            <div class="mb-3">
-                <label for="twitter-user">Username</label>
-                <input type="text" id="twitter-user">
-                <label for="twitter-pw">Password</label>
-                <input type="password" id="twitter-pw">
-            </div>
+        <div class="white-space">
+        <label for="password">Password</label>
+        <input class="input" type="password" id="password">
         </div>
-        <button type="button" id="login-submit-btn" onclick="setCredentials()">Submit</button>
+        <button class="button" type="button" id="loginBtn" onclick="login()">Login</button>
     </div>
+    <p>Don't have an account?</p>
+    <button class="button" id="createAccountButton">Create Account</button>
 
-    <script>
-        function setCredentials() {
-            console.log('user: ' + document.getElementById("instagram-user").value)
-            console.log('pw: ' + document.getElementById("instagram-pw").value)
-
-            let igUser = document.getElementById("instagram-user").value;
-            let igPw = document.getElementById("instagram-pw").value;
-
-            localStorage.setItem("igUser", igUser);
-            localStorage.setItem("igPw", igPw);
-            console.log(
-                localStorage.getItem("igUser"),
-                " ",
-                localStorage.getItem("igPw")
-            );
-            console.log(localStorage.getItem('image-url'))
-            console.log(localStorage.getItem('media-text'))
-
-            location.href = "./main.html"
-
-        }
-    </script>
+    <!-- The Modal -->
+    <div id="createAccountModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="createAccountXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent">Create Account</h2>
+            </div>
+            <div class="modal-body">
+                <label for="newPhone">Phone Number</label>
+                <input class="input" type="text" placeholder="7571113333" id="newPhone">
+                <p class="rqFieldWarning" id="phoneWarning"></p>
+                <label for="newPassword">Password</label>
+                <input class="input" type="password" id="newPassword">
+                <p class="rqFieldWarning" id="pwWarning"></p>
+                <label for="newEmail">Instagram Username</label>
+                <input class="input" type="text" id="newIgUsername">
+                <label for="newPw">Instagram Password</label>
+                <input class="input" type="password" id="newIgPw">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button" id="submitNewAccountBtn" onclick="createNewSpUser()">Create Account</button>
+            </div>
+        </div>
+    </div>
 </body>
 
+<script src="./js/spCreateAccountModal.js"></script>
+<script src="./js/spLogin.js"></script>
+
 <style>
-    .div {
+    .rqFieldWarning {
+        color: red;
+        display: none;
+        margin-top: -3px;
+        margin-bottom: 4px;
+        font-size: x-small;
+    }
+    #loginError {
+        color: red;
+        text-decoration: underline;
+        display: none;
+    }
+    .white-space {
         display: flex;
         flex-direction: column;
+        background-color: white;
+        border: 2px solid black;
+        padding: 7px;
+        border-radius: 5px;
+        margin: 8px;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 10%;
+        padding: 30px;
+        color: black;
+    }
+    .button {
+        justify-content: center;
+        width: fit-content;
+        border-radius: 3px;
+        background-color: white;
+        padding: 7px;
+        margin: 5px;
+    }
+    .input {
+        justify-content: center;
+        width: fit-content;
+        margin: 5px;
+    }
+    #login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        border: 3px solid black;
+        border-radius: 15px;
+        padding: 20px;
+        background-color: #5cb85c;
+      
+    }
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the box */
+        left: 0;
+        top: 40px;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        scale: 120%;
+        border: 2px solid black;
+        border-radius: 10px;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: fit-content;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+
+    @keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+    }
+    .modalHeaderContent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #requiredFieldsLabel {
+        font-size: x-small;
+        margin-top: -14px;
+    }
+    .modal-body {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-footer {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>
 

@@ -76,6 +76,7 @@ editDeleteMeetingBtn.onclick = function () {
     div.style.display = "none";
     j--;
   }
+  console.log(j);
 };
 
 //get information from modal

@@ -40,6 +40,8 @@ function loadMeetingTimes(times) {
     document.getElementById(day).value = oldDay;
     document.getElementById(time).value = oldTime;
     document.getElementById(location).value = oldLocation;
+
+    localStorage.setItem("numMeetingTimes", k)
   }
 }
 
