@@ -24,6 +24,32 @@ window.onclick = function (event) {
   }
 };
 
+function militaryToStandard(military) {
+  var time = military; // your input
+
+  time = time.split(":"); // convert to array
+
+  // fetch
+  var hours = Number(time[0]);
+  var minutes = Number(time[1]);
+
+  // calculate
+  var timeValue;
+
+  if (hours > 0 && hours <= 12) {
+    timeValue = "" + hours;
+  } else if (hours > 12) {
+    timeValue = "" + (hours - 12);
+  } else if (hours == 0) {
+    timeValue = "12";
+  }
+
+  timeValue += minutes < 10 ? ":0" + minutes : ":" + minutes; // get minutes
+  timeValue += hours >= 12 ? " P.M." : " A.M."; // get AM/PM
+
+  return timeValue;
+}
+
 function loadMeetingTimes(times) {
   for (let k = 0; k < times.length; k++) {
     let day = "editMeetingDay" + (k + 1);
@@ -100,11 +126,12 @@ function display(data) {
   meetingTimesLabel.innerHTML = "Meeting Times";
   let meetingTimesDiv = document.createElement("div");
   for (let r = 0; r < data.meeting_times.length; r++) {
+    let time = militaryToStandard(data.meeting_times[r].time);
     let info = document.createElement("p");
     info.innerHTML =
       data.meeting_times[r].day +
       "s at " +
-      data.meeting_times[r].time +
+      time +
       " at " +
       data.meeting_times[r].location;
     meetingTimesDiv.appendChild(info);
@@ -208,6 +235,7 @@ function display(data) {
       hideMeetingTimes();
       loadMeetingTimes(data.meeting_times);
       localStorage.setItem("numMeetingTimes", data.meeting_times.length);
+      console.log("J: " + localStorage.getItem("numMeetingTimes"))
     };
   }
 
@@ -275,7 +303,7 @@ async function queryStudyGroups() {
     }
   }
 
-  console.log("Owner only: " + ownerOnly)
+  console.log("Owner only: " + ownerOnly);
   if (ownerOnly === true) {
     if (queryString.localeCompare("?") != 0) {
       queryString += "&mine=" + ownerOnly;
@@ -295,8 +323,10 @@ async function queryStudyGroups() {
   //let url = "http://127.0.0.1:3000/studygroups";
   let url = "https://csci430-node-server.azurewebsites.net/studygroups";
 
+  localStorage.setItem("lastQuery", url);
   if (queryString.localeCompare("?") > 0) {
     url += queryString;
+    localStorage.setItem("lastQuery", url);
   }
 
   const options = {

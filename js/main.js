@@ -1,5 +1,9 @@
 const token = localStorage.getItem("token");
 
+if(token === null) {
+    location.href = "index.html";
+}
+
 console.log("token: " + token)
 
 async function logout() {

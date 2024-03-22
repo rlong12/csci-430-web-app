@@ -57,6 +57,7 @@ function editGetMeetingTimes(j) {
 }
 
 editAddMeetingBtn.onclick = function () {
+  j = localStorage.getItem("numMeetingTimes");
   if (j < 7) {
     let id = "editMeetingTimeDiv" + j;
     let div = document.getElementById(id);
@@ -65,9 +66,11 @@ editAddMeetingBtn.onclick = function () {
     j++;
   }
   console.log(j);
+  localStorage.setItem("numMeetingTimes", j)
 };
 
 editDeleteMeetingBtn.onclick = function () {
+  j = localStorage.getItem("numMeetingTimes");
   if (j > 1) {
     console.log(j);
     let id = "editMeetingTimeDiv" + (j - 1);
@@ -77,6 +80,7 @@ editDeleteMeetingBtn.onclick = function () {
     j--;
   }
   console.log(j);
+  localStorage.setItem("numMeetingTimes", j)
 };
 
 //get information from modal
@@ -158,7 +162,39 @@ async function editStudyGroup() {
   if (response.status == 200) {
     console.log("Study Group successfully edited!");
     editStudyGroupModal.style.display = "none";
-  } else if (response.status == 400) {
+
+    //requery latest query
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    let lastQueryUrl = localStorage.getItem("lastQuery");
+    console.log("Last query string: " + localStorage.getItem("lastQuery"))
+
+    let requeryResponse = await fetch(lastQueryUrl, options);
+
+  if (requeryResponse.status === 200) {
+    const body = await requeryResponse.json();
+    console.log(body);
+
+    queryStudyGroupModal.style.display = "none";
+
+    clearResults();
+
+    let resultsDiv = document.getElementById("searchResults");
+    let resultsHeader = document.createElement("h1");
+    resultsHeader.innerHTML = "Search Results";
+    resultsDiv.appendChild(resultsHeader);
+
+    for (let i = 0; i < body.length; i++) {
+      console.log(body[i]);
+      display(body[i]);
+    }
+  }
+  } else if (requeryResponse.status == 400) {
     console.log("Unable to edit study group");
   }
 }
