@@ -5,7 +5,7 @@ console.log('twitter_authenticated: ' + localStorage.getItem('twitter-authentica
 
 document.querySelector("#postButton").addEventListener("click", async () => {
     
-    if(document.getElementById("instagram-chkBox").checked === false) {
+    if(document.getElementById("twitter-chkBox").checked === false) {
         return;
     }
 
