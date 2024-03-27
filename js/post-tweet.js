@@ -88,7 +88,7 @@ async function postTweet(text) {
         console.log('done')
 
         await sleepNow(3)
-        location.href = "tweet-form.html"
+        location.href = "spMain.html"
     }
     else {
         console.log('failed to send tweet')
@@ -98,6 +98,6 @@ async function postTweet(text) {
 
         await sleepNow(3)
 
-        location.href = "tweet-form.html"
+        //location.href = "spMain.html"
     }
 }
