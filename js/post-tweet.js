@@ -1,8 +1,8 @@
 import * as SECRETS from "./twitter-secrets.js"
 console.log(SECRETS)
 
-const token = localStorage.getItem("token");
-console.log("sb token: " + token)
+const token = localStorage.getItem("spToken");
+console.log("sp token: " + token)
 
 const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay * 1000))
 
@@ -35,10 +35,15 @@ else {
 async function postTweet(text) {
     console.log('inside postTweet()')
 
-    console.log("studybuddy token: " + token)
+    console.log("social pot token: " + token)
 
     const h1 = document.querySelector("h1")
     const p = document.querySelector("p")
+
+    if (!token) {
+        p.innerHTML = "User must be logged into the Social Pot app!"
+        return
+    }
 
     //const url = "https://studybuddy-api-server.azurewebsites.net/twitter/send-tweet"
     //let url = "http://127.0.0.1:3000/twitter/send-tweet";
