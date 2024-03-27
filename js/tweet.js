@@ -25,10 +25,11 @@ if (auth_code) {
 
 async function authTweet() {
 
-    const text = document.querySelector("#tweetText").value || "Hello from n0code! Posted via API server!"
+    const text = document.querySelector("#tweetText").value || "Hello from the Soical Pot!"
     localStorage.setItem("tweet-text", text);
 
-    const encoded = `https://n0code.net/work/teaching/courses/csci430/studybuddy/tweet.html`
+    //const encoded = `https://n0code.net/work/teaching/courses/csci430/studybuddy/tweet.html`
+    const encoded = `https://ambitious-ocean-09c0b6d0f.4.azurestaticapps.net/main.html`
     const authURL = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${SECRETS.OAUTH2_CLIENT_ID}&redirect_uri=${encoded}&scope=tweet.read%20tweet.write%20users.read&state=state&code_challenge=challenge&code_challenge_method=plain`
 
     console.log(authURL)

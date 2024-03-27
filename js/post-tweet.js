@@ -45,7 +45,9 @@ async function postTweet(text) {
         return
     }
 
-    const url = "https://studybuddy-api-server.azurewebsites.net/twitter/send-tweet"
+    //const url = "https://studybuddy-api-server.azurewebsites.net/twitter/send-tweet"
+    let url = "http://127.0.0.1:3000/twitter/send-tweet";
+    //let url = "https://csci430-node-server.azurewebsites.net/twitter/send-tweet";
     console.log(url)
     
     console.log(twitter_authenticated)

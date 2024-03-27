@@ -99,6 +99,8 @@ function display(data) {
   let containerDiv3 = document.createElement("div");
 
   let footer = document.createElement("div");
+  footer.className = "modal-footer";
+  footer.style.backgroundColor = "white";
 
   let groupName = document.createElement("h2");
   groupName.innerHTML = data.name;
@@ -237,6 +239,47 @@ function display(data) {
       localStorage.setItem("numMeetingTimes", data.meeting_times.length);
       console.log("J: " + localStorage.getItem("numMeetingTimes"))
     };
+  }
+  else {
+    let joinButton = document.createElement("button");
+    joinButton.className = "button";
+    joinButton.innerHTML = "Join Group";
+    joinButton.style.backgroundColor = "#5cb85c";
+    joinButton.id = "joinStudyGroupButton";
+    footer.appendChild(joinButton);
+
+    joinButton.onclick = async function () {
+      let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?add=true`;
+      //let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?add=true`;
+
+      let userObject = {
+        userId: userID,
+      }
+
+      console.log(userObject);
+
+      const options = {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userObject),
+      };
+
+      let response = await fetch(url, options);
+
+      if(response.status === 200) {
+        console.log("Study group joined!")
+        let successMessage = document.createElement("p");
+        successMessage.innerHTML = "Study Group joined!";
+        successMessage.style.color = "#5cb85c"
+        footer.appendChild(successMessage);
+      }
+      else {
+        console.log("Unable to join study group")
+      }
+    }
   }
 
   groupContainer.appendChild(header);

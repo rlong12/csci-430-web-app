@@ -5,11 +5,17 @@ console.log('twitter_authenticated: ' + localStorage.getItem('twitter-authentica
 
 document.querySelector("#tweetButton").addEventListener("click", async () => {
 
+    console.log("tweet button clicked")
+
     const text = document.querySelector("#tweetText").value || "Hello from n0code! Posted via API server!"
     localStorage.setItem("tweet-text", text)
 
-    const redirect_url = `https://n0code.net/work/teaching/courses/csci430/studybuddy/twitter-redirect.html`
     
+    //const redirect_url = `https://n0code.net/work/teaching/courses/csci430/studybuddy/twitter-redirect.html`
+    //let redirect_url = `http://127.0.0.1:5500/web-app/twitter-redirect.html`;
+    let redirect_url = `https://ambitious-ocean-09c0b6d0f.4.azurestaticapps.net/twitter-redirect`;
+    console.log("redirect url: " + redirect_url);
+
     const twitter_authenticated = localStorage.getItem("twitter-authenticated")
     console.log(twitter_authenticated)
 
