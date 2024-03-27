@@ -40,11 +40,6 @@ async function postTweet(text) {
     const h1 = document.querySelector("h1")
     const p = document.querySelector("p")
 
-    if (!token) {
-        p.innerHTML = "User must be logged into the Study Buddy app!"
-        return
-    }
-
     //const url = "https://studybuddy-api-server.azurewebsites.net/twitter/send-tweet"
     //let url = "http://127.0.0.1:3000/twitter/send-tweet";
     let url = "https://csci430-node-server.azurewebsites.net/twitter/send-tweet";
