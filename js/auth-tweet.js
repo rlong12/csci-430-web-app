@@ -13,7 +13,7 @@ document.querySelector("#tweetButton").addEventListener("click", async () => {
     
     //const redirect_url = `https://n0code.net/work/teaching/courses/csci430/studybuddy/twitter-redirect.html`
     //let redirect_url = `http://127.0.0.1:5500/web-app/twitter-redirect.html`;
-    let redirect_url = `https://ambitious-ocean-09c0b6d0f.4.azurestaticapps.net/twitter-redirect`;
+    let redirect_url = `https://ambitious-ocean-09c0b6d0f.4.azurestaticapps.net/twitter-redirect.html`;
     console.log("redirect url: " + redirect_url);
 
     const twitter_authenticated = localStorage.getItem("twitter-authenticated")
