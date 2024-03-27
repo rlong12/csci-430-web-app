@@ -3,11 +3,15 @@ console.log(SECRETS)
 
 console.log('twitter_authenticated: ' + localStorage.getItem('twitter-authenticated'))
 
-document.querySelector("#tweetButton").addEventListener("click", async () => {
+document.querySelector("#postButton").addEventListener("click", async () => {
+    
+    if(document.getElementById("instagram-chkBox").checked === false) {
+        return;
+    }
 
     console.log("tweet button clicked")
 
-    const text = document.querySelector("#tweetText").value || "Hello from n0code! Posted via API server!"
+    const text = document.querySelector("#mediaText").value || "Hello from Social Pot! Posted via API server!"
     localStorage.setItem("tweet-text", text)
 
     
