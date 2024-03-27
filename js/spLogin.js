@@ -17,8 +17,8 @@ async function login() {
         localStorage.getItem("spPassword")
     );
   
-    let url = "http://127.0.0.1:3000/user/sp/login";
-    //let url = "https://csci430-node-server.azurewebsites.net/user/sp/login"
+    //let url = "http://127.0.0.1:3000/user/sp/login";
+    let url = "https://csci430-node-server.azurewebsites.net/user/sp/login"
   
     let data = {
       phone_number: spPhoneNum,

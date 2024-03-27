@@ -33,8 +33,8 @@ async function createNewSpUser() {
   let igUsername = document.getElementById("newIgUsername").value;
   let igPassword = document.getElementById("newIgPw").value;
 
-  let url = "http://127.0.0.1:3000/user/sp";
-  //let url = "https://csci430-node-server.azurewebsites.net/user/sp"
+  //let url = "http://127.0.0.1:3000/user/sp";
+  let url = "https://csci430-node-server.azurewebsites.net/user/sp"
 
   if (phoneNum.localeCompare("") === 0) {
     document.getElementById("phoneWarning").innerHTML =
