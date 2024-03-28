@@ -27,7 +27,7 @@ async function postToSocials() {
     let response = await fetch(url, options);
 
     if (response.status === 201) {
-      console.log("instagram post possibly successful");
+      console.log("instagram post successful!");
       modal.style.display = "none";
     } else {
       console.log("something went wrong");
