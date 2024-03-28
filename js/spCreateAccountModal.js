@@ -30,8 +30,6 @@ async function createNewSpUser() {
 
   let phoneNum = document.getElementById("newPhone").value;
   let pw = document.getElementById("newPassword").value;
-  let igUsername = document.getElementById("newIgUsername").value;
-  let igPassword = document.getElementById("newIgPw").value;
 
   //let url = "http://127.0.0.1:3000/user/sp";
   let url = "https://csci430-node-server.azurewebsites.net/user/sp"
@@ -53,8 +51,6 @@ async function createNewSpUser() {
   const data = {
     phone_number: phoneNum,
     password: pw,
-    ig_username: igUsername,
-    ig_password: igPassword,
   };
 
   const options = {
