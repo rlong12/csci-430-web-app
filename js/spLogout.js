@@ -18,6 +18,7 @@ async function logout() {
     if(response.status === 200) {
         console.log("logout successful");
         localStorage.removeItem("spToken");
+        localStorage.removeItem("twitter-authenticated");
         location.href = "spLogin.html";
     }
     else {
