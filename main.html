@@ -131,19 +131,26 @@
                         <label class="checkbox" for="queryDescChk">Descending</label>
                         <input class="input" type="radio" name="querySortType" id="queryDescChk">
                     </div>
-                    <label for="queryOwnerOnlyDiv">Your groups only?</label>
+                    <label for="queryOwnerOnlyDiv">Your owned groups only?</label>
                     <div class="radioDiv" id="queryOwnerOnlyDiv">
                         <label class="checkbox" for="queryOwnerYes">Yes</label>
                         <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerYes">
                         <label class="checkbox" for="queryOwnerNo">No</label>
                         <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerNo">
                     </div>
+                    <label for="queryMemberOnlyDiv">Your joined groups only?</label>
+                    <div class="radioDiv" id="queryMemberOnlyDiv">
+                        <label class="checkbox" for="queryMemberYes">Yes</label>
+                        <input class="input" type="radio" name="queryMemberOnly" id="queryMemberYes">
+                        <label class="checkbox" for="queryMemberNo">No</label>
+                        <input class="input" type="radio" name="queryMemberOnly" id="queryMemberNo">
+                    </div>
                 </div>
                 <div class="modal-body-content">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="button" id="queryStudyGroupBtn" onclick="queryStudyGroups()">Query Study
+                <button type="button" class="button" id="queryStudyGroupBtn" onclick="queryStudyGroups()">Search Study
                     Groups</button>
             </div>
         </div>
@@ -234,15 +241,53 @@
             <div class="modal-footer">
                 <button type="button" class="button" id="editStudyGroupBtn" onclick="editStudyGroup()">Save
                     Changes</button>
+                <button type="button" class="button" id="participantsBtn">Participants</button>
             </div>
         </div>
     </div>
+
+    <!-- The Study Group Participant Modal -->
+    <div id="participantsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="participantsXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent" id="participantsHeader">Participants</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-content">
+                    <div id="participantsListDiv"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button" id="editParticipantsBtn" onclick="editParticipants()">Save
+                    Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Delete Study Group Confirmation Modal -->
+    <div id="confirmDeleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="confirmDeleteXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent" id="confirmDeleteHeader">Are you sure you want to delete this study
+                    group?</h2>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="button" id="confirmYesBtn" onclick="deleteStudyGroup()">Yes I'm sure!</button>
+                <button type="button" class="button" id="confirmNoBtn">Nevermind</button>
+            </div>
+            <div class="modal-footer" id="confirmDeleteFooter">
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>
     <script src="js/createStudyGroupModal.js"></script>
     <script src="js/queryStudyGroups.js"></script>
     <script src="js/editStudyGroup.js"></script>
+    <script src="js/participants.js"></script>
+    <script src="js/deleteStudyGroup.js"></script>
 </body>
 
 <style>
@@ -483,6 +528,8 @@
         padding: 10px;
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
 
     .results-body {
@@ -496,8 +543,9 @@
         background-color: #5cb85c;
         color: white;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        justify-content: center;
     }
 </style>
 

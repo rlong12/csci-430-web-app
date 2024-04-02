@@ -189,6 +189,17 @@ function display(data) {
     editButton.id = "editStudyGroupButton";
     footer.appendChild(editButton);
 
+    let deleteButton = document.createElement("button");
+    deleteButton.className = "button";
+    deleteButton.innerHTML = "Delete";
+    deleteButton.style.backgroundColor = "red";
+    deleteButton.id = "deleteStudyGroupButton";
+    footer.appendChild(deleteButton);
+
+    deleteButton.onclick = function () {
+      localStorage.setItem("deleteStudyGroupId", data._id);
+      confirmDeleteModal.style.display = "block";
+    };
     editButton.onclick = function () {
       localStorage.setItem("studyGroupID", data._id);
       editStudyGroupModal.style.display = "block";
@@ -237,48 +248,105 @@ function display(data) {
       hideMeetingTimes();
       loadMeetingTimes(data.meeting_times);
       localStorage.setItem("numMeetingTimes", data.meeting_times.length);
-      console.log("J: " + localStorage.getItem("numMeetingTimes"))
+      console.log("J: " + localStorage.getItem("numMeetingTimes"));
+      console.log("participants: " + data.participants);
+      participantsBtn.onclick = function () {
+        loadParticipants(data.participants);
+        participantsModal.style.display = "block";
+      };
     };
-  }
-  else {
-    let joinButton = document.createElement("button");
-    joinButton.className = "button";
-    joinButton.innerHTML = "Join Group";
-    joinButton.style.backgroundColor = "#5cb85c";
-    joinButton.id = "joinStudyGroupButton";
-    footer.appendChild(joinButton);
-
-    joinButton.onclick = async function () {
-      let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?add=true`;
-      //let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?add=true`;
-
-      let userObject = {
-        userId: userID,
+  } else {
+    let memberOfGroup = false;
+    for (
+      let thisGroupParticipants = 0;
+      thisGroupParticipants < data.participants.length;
+      thisGroupParticipants++
+    ) {
+      if (
+        data.participants[thisGroupParticipants].localeCompare(userID) === 0
+      ) {
+        memberOfGroup = true;
       }
+    }
+    if (memberOfGroup) {
+      let leaveButton = document.createElement("button");
+      leaveButton.className = "button";
+      leaveButton.innerHTML = "Leave Group";
+      leaveButton.style.backgroundColor = "red";
+      leaveButton.id = "leaveStudyGroupButton";
+      footer.appendChild(leaveButton);
 
-      console.log(userObject);
+      leaveButton.onclick = async function () {
+        let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?remove=true`;
+        //let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?remove=true`;
 
-      const options = {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userObject),
+        let userObject = {
+          userId: userID,
+        };
+
+        console.log(userObject);
+
+        const options = {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userObject),
+        };
+
+        let response = await fetch(url, options);
+
+        if (response.status === 200) {
+          console.log("Study group left!");
+          let successMessage = document.createElement("p");
+          successMessage.innerHTML = "Study Group left!";
+          successMessage.style.color = "#5cb85c";
+          footer.appendChild(successMessage);
+        } else {
+          console.log("Unable to leave study group");
+        }
       };
 
-      let response = await fetch(url, options);
+    } else {
+      let joinButton = document.createElement("button");
+      joinButton.className = "button";
+      joinButton.innerHTML = "Join Group";
+      joinButton.style.backgroundColor = "#5cb85c";
+      joinButton.id = "joinStudyGroupButton";
+      footer.appendChild(joinButton);
 
-      if(response.status === 200) {
-        console.log("Study group joined!")
-        let successMessage = document.createElement("p");
-        successMessage.innerHTML = "Study Group joined!";
-        successMessage.style.color = "#5cb85c"
-        footer.appendChild(successMessage);
-      }
-      else {
-        console.log("Unable to join study group")
-      }
+      joinButton.onclick = async function () {
+        let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?add=true`;
+        //let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?add=true`;
+
+        let userObject = {
+          userId: userID,
+        };
+
+        console.log(userObject);
+
+        const options = {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userObject),
+        };
+
+        let response = await fetch(url, options);
+
+        if (response.status === 200) {
+          console.log("Study group joined!");
+          let successMessage = document.createElement("p");
+          successMessage.innerHTML = "Study Group joined!";
+          successMessage.style.color = "#5cb85c";
+          footer.appendChild(successMessage);
+        } else {
+          console.log("Unable to join study group");
+        }
+      };
     }
   }
 
@@ -306,6 +374,11 @@ async function queryStudyGroups() {
   let ownerOnly;
   if (document.getElementById("queryOwnerYes").checked === true) {
     ownerOnly = true;
+  }
+
+  let memberOnly;
+  if (document.getElementById("queryMemberYes").checked === true) {
+    memberOnly = true;
   }
 
   let sortByValue = "";
@@ -352,6 +425,14 @@ async function queryStudyGroups() {
       queryString += "&mine=" + ownerOnly;
     } else {
       queryString += "mine=" + ownerOnly;
+    }
+  }
+
+  if (memberOnly === true) {
+    if (queryString.localeCompare("?") != 0) {
+      queryString += "&member=" + memberOnly;
+    } else {
+      queryString += "member=" + memberOnly;
     }
   }
 

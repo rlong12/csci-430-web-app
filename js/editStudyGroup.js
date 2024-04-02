@@ -163,38 +163,43 @@ async function editStudyGroup() {
     console.log("Study Group successfully edited!");
     editStudyGroupModal.style.display = "none";
 
-    //requery latest query
-    const options = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
+    requery();
 
-    let lastQueryUrl = localStorage.getItem("lastQuery");
-    console.log("Last query string: " + localStorage.getItem("lastQuery"))
-
-    let requeryResponse = await fetch(lastQueryUrl, options);
-
-  if (requeryResponse.status === 200) {
-    const body = await requeryResponse.json();
-    console.log(body);
-
-    queryStudyGroupModal.style.display = "none";
-
-    clearResults();
-
-    let resultsDiv = document.getElementById("searchResults");
-    let resultsHeader = document.createElement("h1");
-    resultsHeader.innerHTML = "Search Results";
-    resultsDiv.appendChild(resultsHeader);
-
-    for (let i = 0; i < body.length; i++) {
-      console.log(body[i]);
-      display(body[i]);
-    }
-  }
-  } else if (requeryResponse.status == 400) {
+  } else if (response.status == 400) {
     console.log("Unable to edit study group");
   }
+}
+
+async function requery() {
+  //requery latest query
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+
+  let lastQueryUrl = localStorage.getItem("lastQuery");
+  console.log("Last query string: " + localStorage.getItem("lastQuery"))
+
+  let requeryResponse = await fetch(lastQueryUrl, options);
+
+if (requeryResponse.status === 200) {
+  const body = await requeryResponse.json();
+  console.log(body);
+
+  queryStudyGroupModal.style.display = "none";
+
+  clearResults();
+
+  let resultsDiv = document.getElementById("searchResults");
+  let resultsHeader = document.createElement("h1");
+  resultsHeader.innerHTML = "Search Results";
+  resultsDiv.appendChild(resultsHeader);
+
+  for (let i = 0; i < body.length; i++) {
+    console.log(body[i]);
+    display(body[i]);
+  }
+}
 }

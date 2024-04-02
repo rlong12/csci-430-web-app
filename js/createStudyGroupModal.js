@@ -213,6 +213,7 @@ async function createNewStudyGroup() {
     if (response.status == 201) {
       console.log("Study Group created!");
       createGroupModal.style.display = "none";
+      requery();
     } else if (response.status == 400) {
       console.log("Unable to create study group");
     }
