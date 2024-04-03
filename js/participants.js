@@ -139,6 +139,7 @@ async function editParticipants() {
 
   if(successful) {
     participantsModal.style.display = 'none';
+    editStudyGroupModal.style.display = 'none';
     requery();
   }
 }
