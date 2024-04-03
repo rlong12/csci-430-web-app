@@ -277,8 +277,8 @@ function display(data) {
       footer.appendChild(leaveButton);
 
       leaveButton.onclick = async function () {
-        let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?remove=true`;
-        //let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?remove=true`;
+        //let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?remove=true`;
+        let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?remove=true`;
 
         let userObject = {
           userId: userID,
@@ -317,8 +317,8 @@ function display(data) {
       footer.appendChild(joinButton);
 
       joinButton.onclick = async function () {
-        let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?add=true`;
-        //let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?add=true`;
+        //let url = `http://127.0.0.1:3000/studygroup/${data._id}/participants?add=true`;
+        let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}/particpants?add=true`;
 
         let userObject = {
           userId: userID,

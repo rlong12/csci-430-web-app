@@ -34,8 +34,8 @@ async function loadParticipants(participants) {
     numParticipants < participants.length;
     numParticipants++
   ) {
-    let url = `http://127.0.0.1:3000/user/${participants[numParticipants]}`;
-    //let url = `https://csci430-node-server.azurewebsites.net/user/${participants[numParticipants]}`;
+    //let url = `http://127.0.0.1:3000/user/${participants[numParticipants]}`;
+    let url = `https://csci430-node-server.azurewebsites.net/user/${participants[numParticipants]}`;
 
     const options = {
       method: "GET",
