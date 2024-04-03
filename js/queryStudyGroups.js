@@ -299,9 +299,10 @@ function display(data) {
 
         if (response.status === 200) {
           console.log("Study group left!");
+          leaveButton.style.display = 'none';
           let successMessage = document.createElement("p");
           successMessage.innerHTML = "Study Group left!";
-          successMessage.style.color = "#5cb85c";
+          successMessage.style.color = "red";
           footer.appendChild(successMessage);
         } else {
           console.log("Unable to leave study group");
@@ -339,10 +340,12 @@ function display(data) {
 
         if (response.status === 200) {
           console.log("Study group joined!");
+          joinButton.style.display = 'none';
           let successMessage = document.createElement("p");
           successMessage.innerHTML = "Study Group joined!";
           successMessage.style.color = "#5cb85c";
           footer.appendChild(successMessage);
+          
         } else {
           console.log("Unable to join study group");
         }
