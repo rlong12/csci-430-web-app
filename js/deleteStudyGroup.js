@@ -21,8 +21,8 @@ confirmNoButton.onclick = function() {
 async function deleteStudyGroup() {
     let id = localStorage.getItem("deleteStudyGroupId");
 
-    let url = `http://127.0.0.1:3000/studygroup/${id}`;
-    //let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}`;
+    //let url = `http://127.0.0.1:3000/studygroup/${id}`;
+    let url = `https://csci430-node-server.azurewebsites.net/studygroup/${data._id}`;
 
     const options = {
       method: "DELETE",
