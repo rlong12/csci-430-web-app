@@ -26,6 +26,7 @@ async function inviteUser() {
     sender: localStorage.getItem('userID'),
     receiver: receiverEmail,
     studyGroupId: localStorage.getItem('studyGroupID'),
+    notificationType: 'Invite',
   };
 
   const options = {
