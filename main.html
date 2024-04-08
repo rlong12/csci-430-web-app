@@ -282,12 +282,31 @@
         </div>
     </div>
 
+    <!-- The Invite to Study Group Modal -->
+    <div id="inviteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="inviteXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent" id="inviteHeader">Invite someone to this group?</h2>
+            </div>
+            <div class="modal-body">
+                <label for="inviteEmail">User's email</label>
+                <input type="email" id="inviteEmail" class="input" placeholder="example@gmail.com">
+            </div>
+            <div class="modal-footer" id="inviteModalFooter">
+                <button type="button" class="button" id="inviteUserBtn" onclick="inviteUser()">Invite</button>
+                <p id="resultMessage"></p>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/createStudyGroupModal.js"></script>
     <script src="js/queryStudyGroups.js"></script>
     <script src="js/editStudyGroup.js"></script>
     <script src="js/participants.js"></script>
     <script src="js/deleteStudyGroup.js"></script>
+    <script src="js/invite.js"></script>
 </body>
 
 <style>

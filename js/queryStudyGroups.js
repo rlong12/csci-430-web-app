@@ -196,6 +196,18 @@ function display(data) {
     deleteButton.id = "deleteStudyGroupButton";
     footer.appendChild(deleteButton);
 
+    let inviteButton = document.createElement("button");
+    inviteButton.className = "button";
+    inviteButton.innerHTML = "Invite";
+    inviteButton.style.backgroundColor = "#5cb85c";
+    inviteButton.id = "inviteStudyGroupButton";
+    footer.appendChild(inviteButton);
+
+    inviteButton.onclick = function () {
+      localStorage.setItem("studyGroupID", data._id);
+      inviteModal.style.display = "block";
+    }
+
     deleteButton.onclick = function () {
       localStorage.setItem("deleteStudyGroupId", data._id);
       confirmDeleteModal.style.display = "block";
