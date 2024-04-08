@@ -204,6 +204,7 @@ function display(data) {
     footer.appendChild(inviteButton);
 
     inviteButton.onclick = function () {
+      resultMessage.style.display = "none";
       localStorage.setItem("studyGroupID", data._id);
       inviteModal.style.display = "block";
     }
