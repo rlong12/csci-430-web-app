@@ -99,8 +99,7 @@ function display(data) {
   let containerDiv3 = document.createElement("div");
 
   let footer = document.createElement("div");
-  footer.className = "modal-footer";
-  footer.style.backgroundColor = "white";
+  footer.className = "footer";
 
   let groupName = document.createElement("h2");
   groupName.innerHTML = data.name;

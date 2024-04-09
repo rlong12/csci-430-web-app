@@ -1,3 +1,9 @@
+//handles requerying on entry to main screen
+if(localStorage.getItem('lastQuery') === null) {
+    localStorage.setItem('lastQuery', 'https://csci430-node-server.azurewebsites.net/studygroups?mine=true&member=true');
+}
+requery();
+
 var inviteModal = document.getElementById("inviteModal");
 var inviteXBtn = document.getElementById("inviteXBtn");
 

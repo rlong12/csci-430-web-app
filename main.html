@@ -2,300 +2,318 @@
 
 <head>
     <link rel="stylesheet" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    <h1>Main Page</h1>
-
-    <button type="button" class="button" onclick="logout()" id="logoutButton">Logout</button>
-    <button type="button" class="button" id="createStudyGroupButton">Create New Study Group</button>
-    <button type="button" class="button" id="searchStudyGroupButton">Search Study Groups</button>
-    <br>
-    <div class="results-body" id="searchResults">
+    <!-- Navigation bar to toggle modals-->
+    <div class="topnav">
+        <button type="button" class="button" onclick="logout()" id="logoutButton">Logout</button>
+        <button type="button" class="button" id="createStudyGroupButton">Create New Study Group</button>
+        <button type="button" class="button" id="searchStudyGroupButton">Search Study Groups</button>
+        <button type="button" class="button" id="inboxButton">Inbox</button>
     </div>
 
-    <!-- The Create Study Group Modal -->
-    <div id="createStudyGroupModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="studyGroupXBtn" class="close">&times;</span>
-                <h3 class="modalHeaderContent">Create Study Group</h2>
-                    <p class="modalHeaderContent" id="requiredFieldsLabel">* fields are required</p>
-            </div>
-            <div class="modal-body">
-                <div class="modal-body-content">
-                    <label for="name">*Study Group Name</label>
-                    <input class="input" type="text" id="name">
-                    <p class="rqFieldWarning" id="nameWarning"></p>
-                    <label for="isPublic">*Group Privacy</label>
-                    <div class="radioDiv" id="isPublicDiv">
-                        <label class="checkbox" for="publicChk">Public</label>
-                        <input type="radio" name="privacyType" id="publicChk">
-                        <label class="checkbox" for="privateChk">Private</label>
-                        <input type="radio" name="privacyType" id="privateChk">
-                    </div>
-                    <p class="rqFieldWarning" id="privacyWarning"></p>
-                    <label for="maxParticipants">*Max Participants</label>
-                    <input class="input" type="number" id="maxParticipants" min="1" max="250">
-                    <p class="rqFieldWarning" id="maxParticipantsWarning"></p>
-                    <label for="startDate">Start Date</label>
-                    <input class="input" type="date" id="startDate">
-                    <p class="rqFieldWarning" id="startDateWarning"></p>
-                    <label for="endDate">End Date</label>
-                    <input class="input" type="date" id="endDate">
-                    <p class="rqFieldWarning" id="endDateWarning"></p>
+    <div id="body-div">
+        <h1>Study Buddy</h1>
+
+        <br>
+        <div class="results-body" id="searchResults">
+        </div>
+
+        <!-- The Create Study Group Modal -->
+        <div id="createStudyGroupModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="studyGroupXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent">Create Study Group</h2>
+                        <p class="modalHeaderContent" id="requiredFieldsLabel">* fields are required</p>
                 </div>
-                <div class="modal-body-content">
-                    <div>
-                        <p class="rqFieldWarning" id="meetingTimesWarning"></p>
-                        <label for="meetingTimes">Meeting Times</label>
-                        <button type="button" class="button" id="addMeetingTimeBtn">+</button>
-                        <button type="button" class="button" id="deleteMeetingTimeBtn">-</button>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <label for="name">*Study Group Name</label>
+                        <input class="input" type="text" id="name">
+                        <p class="rqFieldWarning" id="nameWarning"></p>
+                        <label for="isPublic">*Group Privacy</label>
+                        <div class="radioDiv" id="isPublicDiv">
+                            <label class="checkbox" for="publicChk">Public</label>
+                            <input type="radio" name="privacyType" id="publicChk">
+                            <label class="checkbox" for="privateChk">Private</label>
+                            <input type="radio" name="privacyType" id="privateChk">
+                        </div>
+                        <p class="rqFieldWarning" id="privacyWarning"></p>
+                        <label for="maxParticipants">*Max Participants</label>
+                        <input class="input" type="number" id="maxParticipants" min="1" max="250">
+                        <p class="rqFieldWarning" id="maxParticipantsWarning"></p>
+                        <label for="startDate">Start Date</label>
+                        <input class="input" type="date" id="startDate">
+                        <p class="rqFieldWarning" id="startDateWarning"></p>
+                        <label for="endDate">End Date</label>
+                        <input class="input" type="date" id="endDate">
+                        <p class="rqFieldWarning" id="endDateWarning"></p>
                     </div>
-                    <div id="meetingTime0">
-                        <input class="input, meetingDay" type="text" id="meetingDay1" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="meetingTime1" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="meetingLocation1" placeholder="Location">
+                    <div class="modal-body-content">
+                        <div>
+                            <p class="rqFieldWarning" id="meetingTimesWarning"></p>
+                            <label for="meetingTimes">Meeting Times</label>
+                            <button type="button" class="button" id="addMeetingTimeBtn">+</button>
+                            <button type="button" class="button" id="deleteMeetingTimeBtn">-</button>
+                        </div>
+                        <div id="meetingTime0">
+                            <input class="input, meetingDay" type="text" id="meetingDay1" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="meetingTime1" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="meetingLocation1"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="meetingTimeDiv1">
+                            <input class="input, meetingDay" type="text" id="meetingDay2" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="meetingTime2" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="meetingLocation2"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="meetingTimeDiv2">
+                            <input class="input, meetingDay" type="text" id="meetingDay3" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="meetingTime3" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="meetingLocation3"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="meetingTimeDiv3">
+                            <input class="input, meetingDay" type="text" id="meetingDay4" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="meetingTime4" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="meetingLocation4"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="meetingTimeDiv4">
+                            <input class="input, meetingDay" type="text" id="meetingDay5" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="meetingTime5" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="meetingLocation5"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="meetingTimeDiv5">
+                            <input class="input, meetingDay" type="text" id="meetingDay6" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="meetingTime6" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="meetingLocation6"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="meetingTimeDiv6">
+                            <input class="input, meetingDay" type="text" id="meetingDay7" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="meetingTime7" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="meetingLocation7"
+                                placeholder="Location">
+                        </div>
+                        <label for="description">Study Group Description</label>
+                        <input class="input" type="text" id="description">
+                        <label for="school">School for Study Group</label>
+                        <input class="input" type="text" id="school" placeholder="Bridgewater College">
+                        <label for="courseNum">Course Number</label>
+                        <input class="input" type="text" id="courseNum" placeholder="CSCI-100">
                     </div>
-                    <div class="meetingTimeInput" id="meetingTimeDiv1">
-                        <input class="input, meetingDay" type="text" id="meetingDay2" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="meetingTime2" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="meetingLocation2" placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="meetingTimeDiv2">
-                        <input class="input, meetingDay" type="text" id="meetingDay3" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="meetingTime3" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="meetingLocation3" placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="meetingTimeDiv3">
-                        <input class="input, meetingDay" type="text" id="meetingDay4" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="meetingTime4" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="meetingLocation4" placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="meetingTimeDiv4">
-                        <input class="input, meetingDay" type="text" id="meetingDay5" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="meetingTime5" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="meetingLocation5" placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="meetingTimeDiv5">
-                        <input class="input, meetingDay" type="text" id="meetingDay6" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="meetingTime6" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="meetingLocation6" placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="meetingTimeDiv6">
-                        <input class="input, meetingDay" type="text" id="meetingDay7" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="meetingTime7" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="meetingLocation7" placeholder="Location">
-                    </div>
-                    <label for="description">Study Group Description</label>
-                    <input class="input" type="text" id="description">
-                    <label for="school">School for Study Group</label>
-                    <input class="input" type="text" id="school" placeholder="Bridgewater College">
-                    <label for="courseNum">Course Number</label>
-                    <input class="input" type="text" id="courseNum" placeholder="CSCI-100">
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="button" id="submitNewStudyGroupBtn" onclick="createNewStudyGroup()">Create
-                    Study Group</button>
+                <div class="modal-footer">
+                    <button type="button" class="button" id="submitNewStudyGroupBtn"
+                        onclick="createNewStudyGroup()">Create
+                        Study Group</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- The Search Study Groups Modal -->
-    <div id="searchStudyGroupModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="searchStudyGroupXBtn" class="close">&times;</span>
-                <h3 class="modalHeaderContent" id="queryStudyGroupHeader">Search for Study Groups</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-body-content">
-                    <label for="querySearch">Search for</label>
-                    <input class="input" type="text" id="querySearch">
-                    <label for="queryOngoing">Ongoing</label>
-                    <div class="radioDiv" id="queryOngoingDiv">
-                        <label class="checkbox" for="queryYesChk">Yes</label>
-                        <input class="input" type="radio" name="queryOngoingType" id="queryYesChk">
-                        <label class="checkbox" for="queryNoChk">No</label>
-                        <input class="input" type="radio" name="queryOngoingType" id="queryNoChk">
+        <!-- The Search Study Groups Modal -->
+        <div id="searchStudyGroupModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="searchStudyGroupXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent" id="queryStudyGroupHeader">Search for Study Groups</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <label for="querySearch">Search for</label>
+                        <input class="input" type="text" id="querySearch">
+                        <label for="queryOngoing">Ongoing</label>
+                        <div class="radioDiv" id="queryOngoingDiv">
+                            <label class="checkbox" for="queryYesChk">Yes</label>
+                            <input class="input" type="radio" name="queryOngoingType" id="queryYesChk">
+                            <label class="checkbox" for="queryNoChk">No</label>
+                            <input class="input" type="radio" name="queryOngoingType" id="queryNoChk">
+                        </div>
+                        <label for="querySkip">Skip</label>
+                        <input class="input" type="number" id="querySkip" min="1" max="10">
+                        <label for="queryLimit">Limit</label>
+                        <input class="input" type="number" id="queryLimit">
+                        <label for="querySortByDiv">Sorty by</label>
+                        <div class="radioDiv" id="querySortByDiv">
+                            <label class="checkbox" for="queryAscChk">Ascending</label>
+                            <input class="input" type="radio" name="querySortType" id="queryAscChk">
+                            <label class="checkbox" for="queryDescChk">Descending</label>
+                            <input class="input" type="radio" name="querySortType" id="queryDescChk">
+                        </div>
+                        <label for="queryOwnerOnlyDiv">Your owned groups only?</label>
+                        <div class="radioDiv" id="queryOwnerOnlyDiv">
+                            <label class="checkbox" for="queryOwnerYes">Yes</label>
+                            <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerYes">
+                            <label class="checkbox" for="queryOwnerNo">No</label>
+                            <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerNo">
+                        </div>
+                        <label for="queryMemberOnlyDiv">Your joined groups only?</label>
+                        <div class="radioDiv" id="queryMemberOnlyDiv">
+                            <label class="checkbox" for="queryMemberYes">Yes</label>
+                            <input class="input" type="radio" name="queryMemberOnly" id="queryMemberYes">
+                            <label class="checkbox" for="queryMemberNo">No</label>
+                            <input class="input" type="radio" name="queryMemberOnly" id="queryMemberNo">
+                        </div>
                     </div>
-                    <label for="querySkip">Skip</label>
-                    <input class="input" type="number" id="querySkip" min="1" max="10">
-                    <label for="queryLimit">Limit</label>
-                    <input class="input" type="number" id="queryLimit">
-                    <label for="querySortByDiv">Sorty by</label>
-                    <div class="radioDiv" id="querySortByDiv">
-                        <label class="checkbox" for="queryAscChk">Ascending</label>
-                        <input class="input" type="radio" name="querySortType" id="queryAscChk">
-                        <label class="checkbox" for="queryDescChk">Descending</label>
-                        <input class="input" type="radio" name="querySortType" id="queryDescChk">
-                    </div>
-                    <label for="queryOwnerOnlyDiv">Your owned groups only?</label>
-                    <div class="radioDiv" id="queryOwnerOnlyDiv">
-                        <label class="checkbox" for="queryOwnerYes">Yes</label>
-                        <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerYes">
-                        <label class="checkbox" for="queryOwnerNo">No</label>
-                        <input class="input" type="radio" name="queryOwnerOnly" id="queryOwnerNo">
-                    </div>
-                    <label for="queryMemberOnlyDiv">Your joined groups only?</label>
-                    <div class="radioDiv" id="queryMemberOnlyDiv">
-                        <label class="checkbox" for="queryMemberYes">Yes</label>
-                        <input class="input" type="radio" name="queryMemberOnly" id="queryMemberYes">
-                        <label class="checkbox" for="queryMemberNo">No</label>
-                        <input class="input" type="radio" name="queryMemberOnly" id="queryMemberNo">
+                    <div class="modal-body-content">
                     </div>
                 </div>
-                <div class="modal-body-content">
+                <div class="modal-footer">
+                    <button type="button" class="button" id="queryStudyGroupBtn" onclick="queryStudyGroups()">Search
+                        Study
+                        Groups</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="button" id="queryStudyGroupBtn" onclick="queryStudyGroups()">Search Study
-                    Groups</button>
             </div>
         </div>
-    </div>
 
-    <!-- The Edit Study Groups Modal -->
-    <div id="editStudyGroupModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="editStudyGroupXBtn" class="close">&times;</span>
-                <h3 class="modalHeaderContent">Edit Study Group</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-body-content">
-                    <label for="name">Study Group Name</label>
-                    <input class="input" type="text" id="editName">
-                    <label for="isPublic">Group Privacy</label>
-                    <div class="radioDiv" id="isPublicDiv">
-                        <label class="checkbox" for="publicChk">Public</label>
-                        <input type="radio" name="privacyType" id="editPublicChk">
-                        <label class="checkbox" for="privateChk">Private</label>
-                        <input type="radio" name="privacyType" id="editPrivateChk">
-                    </div>
-                    <label for="maxParticipants">Max Participants</label>
-                    <input class="input" type="number" id="editMaxParticipants" min="1" max="250">
-                    <label for="startDate">Start Date</label>
-                    <input class="input" type="date" id="editStartDate">
-                    <label for="endDate">End Date</label>
-                    <input class="input" type="date" id="editEndDate">
+        <!-- The Edit Study Groups Modal -->
+        <div id="editStudyGroupModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="editStudyGroupXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent">Edit Study Group</h2>
                 </div>
-                <div class="modal-body-content">
-                    <div>
-                        <p class="rqFieldWarning" id="editMeetingTimesWarning"></p>
-                        <label for="meetingTimes">Meeting Times</label>
-                        <button type="button" class="button" id="editAddMeetingTimeBtn">+</button>
-                        <button type="button" class="button" id="editDeleteMeetingTimeBtn">-</button>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <label for="name">Study Group Name</label>
+                        <input class="input" type="text" id="editName">
+                        <label for="isPublic">Group Privacy</label>
+                        <div class="radioDiv" id="isPublicDiv">
+                            <label class="checkbox" for="publicChk">Public</label>
+                            <input type="radio" name="privacyType" id="editPublicChk">
+                            <label class="checkbox" for="privateChk">Private</label>
+                            <input type="radio" name="privacyType" id="editPrivateChk">
+                        </div>
+                        <label for="maxParticipants">Max Participants</label>
+                        <input class="input" type="number" id="editMaxParticipants" min="1" max="250">
+                        <label for="startDate">Start Date</label>
+                        <input class="input" type="date" id="editStartDate">
+                        <label for="endDate">End Date</label>
+                        <input class="input" type="date" id="editEndDate">
                     </div>
-                    <div id="editMeetingTime0">
-                        <input class="input, meetingDay" type="text" id="editMeetingDay1" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="editMeetingTime1" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="editMeetingLocation1"
-                            placeholder="Location">
+                    <div class="modal-body-content">
+                        <div>
+                            <p class="rqFieldWarning" id="editMeetingTimesWarning"></p>
+                            <label for="meetingTimes">Meeting Times</label>
+                            <button type="button" class="button" id="editAddMeetingTimeBtn">+</button>
+                            <button type="button" class="button" id="editDeleteMeetingTimeBtn">-</button>
+                        </div>
+                        <div id="editMeetingTime0">
+                            <input class="input, meetingDay" type="text" id="editMeetingDay1" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="editMeetingTime1" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="editMeetingLocation1"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="editMeetingTimeDiv1">
+                            <input class="input, meetingDay" type="text" id="editMeetingDay2" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="editMeetingTime2" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="editMeetingLocation2"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="editMeetingTimeDiv2">
+                            <input class="input, meetingDay" type="text" id="editMeetingDay3" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="editMeetingTime3" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="editMeetingLocation3"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="editMeetingTimeDiv3">
+                            <input class="input, meetingDay" type="text" id="editMeetingDay4" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="editMeetingTime4" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="editMeetingLocation4"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="editMeetingTimeDiv4">
+                            <input class="input, meetingDay" type="text" id="editMeetingDay5" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="editMeetingTime5" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="editMeetingLocation5"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="editMeetingTimeDiv5">
+                            <input class="input, meetingDay" type="text" id="editMeetingDay6" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="editMeetingTime6" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="editMeetingLocation6"
+                                placeholder="Location">
+                        </div>
+                        <div class="meetingTimeInput" id="editMeetingTimeDiv6">
+                            <input class="input, meetingDay" type="text" id="editMeetingDay7" placeholder="Monday">
+                            <input class="input, meetingTime" type="time" id="editMeetingTime7" placeholder="10:30">
+                            <input class="input, meetingLocation" type="text" id="editMeetingLocation7"
+                                placeholder="Location">
+                        </div>
+                        <label for="description">Study Group Description</label>
+                        <input class="input" type="text" id="editDescription">
+                        <label for="school">School for Study Group</label>
+                        <input class="input" type="text" id="editSchool" placeholder="Bridgewater College">
+                        <label for="courseNum">Course Number</label>
+                        <input class="input" type="text" id="editCourseNum" placeholder="CSCI-100">
                     </div>
-                    <div class="meetingTimeInput" id="editMeetingTimeDiv1">
-                        <input class="input, meetingDay" type="text" id="editMeetingDay2" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="editMeetingTime2" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="editMeetingLocation2"
-                            placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="editMeetingTimeDiv2">
-                        <input class="input, meetingDay" type="text" id="editMeetingDay3" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="editMeetingTime3" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="editMeetingLocation3"
-                            placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="editMeetingTimeDiv3">
-                        <input class="input, meetingDay" type="text" id="editMeetingDay4" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="editMeetingTime4" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="editMeetingLocation4"
-                            placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="editMeetingTimeDiv4">
-                        <input class="input, meetingDay" type="text" id="editMeetingDay5" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="editMeetingTime5" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="editMeetingLocation5"
-                            placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="editMeetingTimeDiv5">
-                        <input class="input, meetingDay" type="text" id="editMeetingDay6" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="editMeetingTime6" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="editMeetingLocation6"
-                            placeholder="Location">
-                    </div>
-                    <div class="meetingTimeInput" id="editMeetingTimeDiv6">
-                        <input class="input, meetingDay" type="text" id="editMeetingDay7" placeholder="Monday">
-                        <input class="input, meetingTime" type="time" id="editMeetingTime7" placeholder="10:30">
-                        <input class="input, meetingLocation" type="text" id="editMeetingLocation7"
-                            placeholder="Location">
-                    </div>
-                    <label for="description">Study Group Description</label>
-                    <input class="input" type="text" id="editDescription">
-                    <label for="school">School for Study Group</label>
-                    <input class="input" type="text" id="editSchool" placeholder="Bridgewater College">
-                    <label for="courseNum">Course Number</label>
-                    <input class="input" type="text" id="editCourseNum" placeholder="CSCI-100">
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="button" id="editStudyGroupBtn" onclick="editStudyGroup()">Save
-                    Changes</button>
-                <button type="button" class="button" id="participantsBtn">Participants</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- The Study Group Participant Modal -->
-    <div id="participantsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="participantsXBtn" class="close">&times;</span>
-                <h3 class="modalHeaderContent" id="participantsHeader">Participants</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-body-content">
-                    <div id="participantsListDiv"></div>
+                <div class="modal-footer">
+                    <button type="button" class="button" id="editStudyGroupBtn" onclick="editStudyGroup()">Save
+                        Changes</button>
+                    <button type="button" class="button" id="participantsBtn">Participants</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="button" id="editParticipantsBtn" onclick="editParticipants()">Save
-                    Changes</button>
+        </div>
+
+        <!-- The Study Group Participant Modal -->
+        <div id="participantsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="participantsXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent" id="participantsHeader">Participants</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <div id="participantsListDiv"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button" id="editParticipantsBtn" onclick="editParticipants()">Save
+                        Changes</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- The Delete Study Group Confirmation Modal -->
-    <div id="confirmDeleteModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="confirmDeleteXBtn" class="close">&times;</span>
-                <h3 class="modalHeaderContent" id="confirmDeleteHeader">Are you sure you want to delete this study
-                    group?</h2>
-            </div>
-            <div class="modal-body">
-                <button type="button" class="button" id="confirmYesBtn" onclick="deleteStudyGroup()">Yes I'm sure!</button>
-                <button type="button" class="button" id="confirmNoBtn">Nevermind</button>
-            </div>
-            <div class="modal-footer" id="confirmDeleteFooter">
+        <!-- The Delete Study Group Confirmation Modal -->
+        <div id="confirmDeleteModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="confirmDeleteXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent" id="confirmDeleteHeader">Are you sure you want to delete this study
+                        group?</h2>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="button" id="confirmYesBtn" onclick="deleteStudyGroup()">Yes I'm
+                        sure!</button>
+                    <button type="button" class="button" id="confirmNoBtn">Nevermind</button>
+                </div>
+                <div class="modal-footer" id="confirmDeleteFooter">
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- The Invite to Study Group Modal -->
-    <div id="inviteModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="inviteXBtn" class="close">&times;</span>
-                <h3 class="modalHeaderContent" id="inviteHeader">Invite someone to this group?</h2>
-            </div>
-            <div class="modal-body">
-                <label for="inviteEmail">User's email</label>
-                <input type="email" id="inviteEmail" class="input" placeholder="example@gmail.com">
-            </div>
-            <div class="modal-footer" id="inviteModalFooter">
-                <button type="button" class="button" id="inviteUserBtn" onclick="inviteUser()">Invite</button>
-                <p id="resultMessage"></p>
+        <!-- The Invite to Study Group Modal -->
+        <div id="inviteModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="inviteXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent" id="inviteHeader">Invite someone to this group?</h2>
+                </div>
+                <div class="modal-body">
+                    <label for="inviteEmail">User's email</label>
+                    <input type="email" id="inviteEmail" class="input" placeholder="example@gmail.com">
+                </div>
+                <div class="modal-footer" id="inviteModalFooter">
+                    <button type="button" class="button" id="inviteUserBtn" onclick="inviteUser()">Invite</button>
+                    <p id="resultMessage"></p>
+                </div>
             </div>
         </div>
     </div>
@@ -329,7 +347,7 @@
     }
 
     .searchResultGroup {
-        background-color: white;
+        background-color: #f3f3f3;
         margin: 10px;
         border: 2px solid black;
         border-radius: 5px;
@@ -381,6 +399,7 @@
     }
 
     .modal-body-content {
+        background-color: #f3f3f3;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -417,12 +436,16 @@
     }
 
     body {
+        margin: 0%;
+        background-color: #5cb85c;
+    }
+
+    #body-div {
         background-color: #5cb85c;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 10%;
         padding: 30px;
         color: black;
     }
@@ -473,7 +496,7 @@
     /* Modal Content */
     .modal-content {
         position: relative;
-        background-color: #fefefe;
+        background-color: #f3f3f3;
         margin: auto;
         padding: 0;
         border: 1px solid #888;
@@ -565,6 +588,41 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+    }
+
+    .footer {
+        padding: 2px 16px;
+        background-color: #f3f3f3;
+        color: black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Navbar */
+    .topnav {
+        overflow: hidden;
+        background-color: #f3f3f3;
+        padding: 7px;
+        width: auto;
+        height: auto;
+    }
+
+    .topnav button {
+        float: right;
+        background-color: #5cb85c;
+        text-align: center;
+        text-decoration: none;
+        margin: 7px;
+    }
+
+    button:hover {
+        background-color: #89d389;
+    }
+
+    .modal-footer button:hover {
+        background-color: #ddd;
     }
 </style>
 

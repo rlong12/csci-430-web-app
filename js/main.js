@@ -24,6 +24,7 @@ async function logout() {
     if(response.status === 200) {
         console.log("logout successful");
         localStorage.removeItem("token");
+        localStorage.removeItem("lastQuery");
         location.href = "index.html";
     }
     else {
