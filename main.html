@@ -316,6 +316,23 @@
                 </div>
             </div>
         </div>
+
+        <!-- The User's Notifications Modal -->
+        <div id="inboxModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="inboxXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent" id="inboxHeader">Inbox</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <div class="notificationsList" id="notificationsListDiv"></div>
+                        <p id="notificationsErrorMessage"></p>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>
@@ -325,9 +342,37 @@
     <script src="js/participants.js"></script>
     <script src="js/deleteStudyGroup.js"></script>
     <script src="js/invite.js"></script>
+    <script src="js/inbox.js"></script>
 </body>
 
 <style>
+    .notificationsList {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .notification {
+        display: flex;
+        flex-direction: column;
+        border: solid black 2px;
+        border-radius: 4px;
+        margin: 7px;
+    }
+
+    .notificationContent {
+        display: flex;
+        flex-direction: column;
+        margin-left: 7px;
+        margin-right: 7px;
+        margin-top: -5px;
+        margin-bottom: -5px;
+        padding: 0px;
+    }
+
+    #notificationsErrorMessage {
+        display: none;
+    }
+
     .checkbox {
         margin-bottom: 7px;
     }
@@ -446,7 +491,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 30px;
         color: black;
     }
 
@@ -491,6 +535,12 @@
         scale: 115%;
         border: 2px solid black;
         border-radius: 5px;
+    }
+
+    #inboxModal {
+        margin: 10px;
+        max-height: calc(100vh - 165px);
+        overflow-y: auto;
     }
 
     /* Modal Content */

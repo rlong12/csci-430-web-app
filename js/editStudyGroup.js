@@ -194,7 +194,7 @@ if (requeryResponse.status === 200) {
 
   let resultsDiv = document.getElementById("searchResults");
   let resultsHeader = document.createElement("h1");
-  resultsHeader.innerHTML = "Search Results";
+  resultsHeader.innerHTML = "Study Groups";
   resultsDiv.appendChild(resultsHeader);
 
   for (let i = 0; i < body.length; i++) {
