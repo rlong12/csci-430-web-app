@@ -38,6 +38,10 @@ function loadNotifications(data) {
   let notificationContainer = document.createElement("div");
   notificationContainer.className = "notification";
 
+  if(data.isRead === true) {
+    notificationContainer.style.backgroundColor = '#f3f3f3';
+  }
+
   let innerContainer = document.createElement("div");
   innerContainer.className = "notificationContent";
 
