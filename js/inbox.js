@@ -103,8 +103,8 @@ function loadNotifications(data) {
         inviteButtonsDiv.appendChild(successMessage);
         console.log("successfully accepted invite");
 
-        url = `http://127.0.0.1:3000/notification/dealtWithStatus`;
-        //url = `https://csci430-node-server.azurewebsites.net/notification/dealtWithStatus`;
+        //url = `http://127.0.0.1:3000/notification/dealtWithStatus`;
+        url = `https://csci430-node-server.azurewebsites.net/notification/dealtWithStatus`;
 
         userObject = {
           notificationId: data._id,
@@ -144,8 +144,8 @@ function loadNotifications(data) {
     declineButton.className = "button";
     declineButton.innerHTML = "Decline";
     declineButton.onclick = async function () {
-        let url = `http://127.0.0.1:3000/notification/dealtWithStatus`;
-        //let url = `https://csci430-node-server.azurewebsites.net/notification/dealtWithStatus`;
+        //let url = `http://127.0.0.1:3000/notification/dealtWithStatus`;
+        let url = `https://csci430-node-server.azurewebsites.net/notification/dealtWithStatus`;
 
         let userObject = {
           notificationId: data._id,
