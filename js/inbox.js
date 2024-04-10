@@ -134,6 +134,7 @@ function loadNotifications(data) {
 
         if (response.status === 200) {
           console.log("Notification " + data._id + " dealt with");
+          notificationContainer.style.backgroundColor = '#e5e5e5';
         }
       } else {
         console.log("Unable to join group");
@@ -183,6 +184,7 @@ function loadNotifications(data) {
         console.log("successfully declined invite");
 
           console.log("Notification " + data._id + " dealt with");
+          notificationContainer.style.backgroundColor = '#e5e5e5';
         }
         else {
           let body = await response.json();
