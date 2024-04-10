@@ -39,7 +39,8 @@ function loadNotifications(data) {
   notificationContainer.className = "notification";
 
   if(data.isRead === true) {
-    notificationContainer.style.backgroundColor = '#f3f3f3';
+    console.log("notification has been read");
+    notificationContainer.style.backgroundColor = '#e5e5e5';
   }
 
   let innerContainer = document.createElement("div");
