@@ -100,6 +100,7 @@ function loadNotifications(data) {
         let successMessage = document.createElement("p");
         successMessage.innerHTML = "Invite Accepted!";
         successMessage.style.color = "#5cb85c";
+        successMessage.style.scale = "80%";
         inviteButtonsDiv.appendChild(successMessage);
         console.log("successfully accepted invite");
 
@@ -134,6 +135,7 @@ function loadNotifications(data) {
         let p = document.createElement("p");
         p.innerHTML = "Unable to join group. Reload inbox and try again.";
         p.style.color = "orange";
+        p.style.scale = "80%";
         inviteButtonsDiv.appendChild(p);
       }
     };
