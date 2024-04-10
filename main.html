@@ -327,7 +327,7 @@
                 <div class="modal-body">
                     <div class="modal-body-content">
                         <div class="notificationsList" id="notificationsListDiv"></div>
-                        <p id="notificationsErrorMessage"></p>
+                        <p id="notificationsErrorMessage">You have no notifications.</p>
                     </div>
                 </div>
                 <div class="modal-footer"></div>
@@ -349,6 +349,7 @@
     .notificationsList {
         display: flex;
         flex-direction: column;
+        background-color: #f3f3f3;
     }
 
     .notification {
@@ -357,6 +358,7 @@
         border: solid black 2px;
         border-radius: 4px;
         margin: 7px;
+        background-color: white;
     }
 
     .notificationContent {
@@ -371,6 +373,14 @@
 
     #notificationsErrorMessage {
         display: none;
+    }
+
+    .inviteButtonsDiv {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
     }
 
     .checkbox {

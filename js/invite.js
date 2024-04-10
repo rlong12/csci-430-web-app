@@ -33,6 +33,7 @@ async function inviteUser() {
     receiver: receiverEmail,
     studyGroupId: localStorage.getItem('studyGroupID'),
     notificationType: 'Invite',
+    dealtWith: false,
   };
 
   const options = {
