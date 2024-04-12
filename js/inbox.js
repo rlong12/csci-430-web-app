@@ -197,12 +197,14 @@ function loadNotifications(data) {
     innerContainer.appendChild(inviteButtonsDiv);
   }
   else {
+    if(data.notificationType === "Invite") {
     let p = document.createElement('p');
     p.innerHTML = "No action needed.";
     p.style.color = "#5cb85c"
     p.style.alignSelf = 'center';
     p.style.scale = "80%";
     innerContainer.appendChild(p);
+    }
   }
 
   notificationContainer.appendChild(innerContainer);
@@ -232,6 +234,7 @@ async function getNotifications() {
     clearNotifications();
     document.getElementById("notificationsListDiv").style.display = "block";
     document.getElementById("notificationsErrorMessage").style.display = "none";
+    body.reverse();
     for (let i = 0; i < body.length; i++) {
       loadNotifications(body[i]);
     }
