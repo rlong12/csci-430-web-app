@@ -179,7 +179,7 @@ function loadNotifications(data) {
           removeInviteButtons(inviteButtonsDiv);
         let successMessage = document.createElement("p");
         successMessage.innerHTML = "Declined Invite!";
-        successMessage.style.color = "orange";
+        successMessage.style.color = "red";
         inviteButtonsDiv.appendChild(successMessage);
         console.log("successfully declined invite");
 
