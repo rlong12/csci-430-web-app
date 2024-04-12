@@ -206,7 +206,7 @@ function display(data) {
       resultMessage.style.display = "none";
       localStorage.setItem("studyGroupID", data._id);
       inviteModal.style.display = "block";
-    }
+    };
 
     deleteButton.onclick = function () {
       localStorage.setItem("deleteStudyGroupId", data._id);
@@ -262,12 +262,22 @@ function display(data) {
       localStorage.setItem("numMeetingTimes", data.meeting_times.length);
       console.log("J: " + localStorage.getItem("numMeetingTimes"));
       console.log("participants: " + data.participants);
-      participantsBtn.onclick = function () {
-        loadParticipants(data.participants);
-        participantsModal.style.display = "block";
+      participantsEditBtn.onclick = function () {
+        loadEditParticipants(data.participants);
+        participantsEditModal.style.display = "block";
       };
     };
   } else {
+    let participantsBtn = document.createElement("button");
+    participantsBtn.style.backgroundColor = "#5cb85c";
+    participantsBtn.className = "button";
+    participantsBtn.innerHTML = "Participants";
+    participantsBtn.onclick = function () {
+      loadParticipants(data.owner, data.participants);
+      participantsModal.style.display = "block";
+    };
+    footer.appendChild(participantsBtn);
+
     let memberOfGroup = false;
     for (
       let thisGroupParticipants = 0;
@@ -311,7 +321,7 @@ function display(data) {
 
         if (response.status === 200) {
           console.log("Study group left!");
-          leaveButton.style.display = 'none';
+          leaveButton.style.display = "none";
           let successMessage = document.createElement("p");
           successMessage.innerHTML = "Study Group left!";
           successMessage.style.color = "red";
@@ -320,7 +330,6 @@ function display(data) {
           console.log("Unable to leave study group");
         }
       };
-
     } else {
       let joinButton = document.createElement("button");
       joinButton.className = "button";
@@ -352,12 +361,11 @@ function display(data) {
 
         if (response.status === 200) {
           console.log("Study group joined!");
-          joinButton.style.display = 'none';
+          joinButton.style.display = "none";
           let successMessage = document.createElement("p");
           successMessage.innerHTML = "Study Group joined!";
           successMessage.style.color = "#5cb85c";
           footer.appendChild(successMessage);
-          
         } else {
           console.log("Unable to join study group");
         }

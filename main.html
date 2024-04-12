@@ -257,12 +257,31 @@
                 <div class="modal-footer">
                     <button type="button" class="button" id="editStudyGroupBtn" onclick="editStudyGroup()">Save
                         Changes</button>
-                    <button type="button" class="button" id="participantsBtn">Participants</button>
+                    <button type="button" class="button" id="participantsEditBtn">Participants</button>
                 </div>
             </div>
         </div>
 
-        <!-- The Study Group Participant Modal -->
+        <!-- The Study Group Edit Participant Modal -->
+        <div id="participantsEditModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="participantsEditXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent" id="participantsEditHeader">Participants</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <div id="participantsEditListDiv"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button" id="editParticipantsBtn" onclick="editParticipants()">Save
+                        Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Study Group Participants Modal -->
         <div id="participantsModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -274,10 +293,7 @@
                         <div id="participantsListDiv"></div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="button" id="editParticipantsBtn" onclick="editParticipants()">Save
-                        Changes</button>
-                </div>
+                <div class="modal-footer"></div>
             </div>
         </div>
 
@@ -317,6 +333,28 @@
             </div>
         </div>
 
+        <!-- The Message Participant Modal -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="messageXBtn" class="close">&times;</span>
+                    <h3 class="modalHeaderContent" id="messageHeader">Message</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <label for="messageSubject">Subject</label>
+                        <input type="text" id="messageSubject" class="input">
+                        <label for="messageBody">Body</label>
+                        <textarea id="messageBody" class="input"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer" id="messageModalFooter">
+                    <button type="button" class="button" id="messageUserBtn" onclick="messageUser()">Send</button>
+                    <p id="messageResultMessage"></p>
+                </div>
+            </div>
+        </div>
+
         <!-- The User's Notifications Modal -->
         <div id="inboxModal" class="modal">
             <div class="modal-content">
@@ -343,9 +381,14 @@
     <script src="js/deleteStudyGroup.js"></script>
     <script src="js/invite.js"></script>
     <script src="js/inbox.js"></script>
+    <script src="js/messageUser.js"></script>
 </body>
 
 <style>
+    #messageResultMessage {
+        display: none;
+    }
+
     .notificationsList {
         display: flex;
         flex-direction: column;
