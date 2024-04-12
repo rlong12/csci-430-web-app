@@ -56,6 +56,10 @@ async function messageUser() {
     console.log('message sent')
     messageResultMessage.innerHTML = "Message Sent!";
     messageResultMessage.style.display = 'block';
+
+    if(!(localStorage.getItem('notificationId') === null)) {
+      
+    }
   }
   else {
     console.log('Didnt send');

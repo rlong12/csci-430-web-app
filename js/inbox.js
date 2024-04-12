@@ -196,15 +196,29 @@ function loadNotifications(data) {
 
     innerContainer.appendChild(inviteButtonsDiv);
   }
-  else {
-    if(data.notificationType === "Invite") {
+  else if(data.notificationType === "Invite") {
     let p = document.createElement('p');
     p.innerHTML = "No action needed.";
     p.style.color = "#5cb85c"
     p.style.alignSelf = 'center';
     p.style.scale = "80%";
     innerContainer.appendChild(p);
+    
+  }
+  else {
+    localStorage.setItem('notificationId', null);
+    let replyButton = document.createElement('button');
+    replyButton.className = 'button';
+    replyButton.style.backgroundColor = '#5cb85c';
+    replyButton.innerHTML = 'Reply';
+    replyButton.style.marginBottom = '15px';
+    replyButton.onclick = function () {
+      messageModal.style.display = 'block';
+      localStorage.setItem('messageReceiverId', data.sender);
+      localStorage.setItem('notificationId', data._id);
+      console.log(localStorage.getItem('messageReceiverId'));
     }
+    innerContainer.appendChild(replyButton);
   }
 
   notificationContainer.appendChild(innerContainer);
