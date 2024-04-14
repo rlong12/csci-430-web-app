@@ -98,6 +98,7 @@ function loadNotifications(data) {
       console.log("Requesting to join group");
 
       let response = await fetch(url, options);
+      let body = await response.json();
 
       if (response.status === 200) {
         console.log("Join successful");
@@ -108,6 +109,8 @@ function loadNotifications(data) {
         successMessage.style.scale = "80%";
         inviteButtonsDiv.appendChild(successMessage);
         console.log("successfully accepted invite");
+
+        displayInstaModal(body.name);
 
         //url = `http://127.0.0.1:3000/notification/dealtWithStatus`;
         url = `https://csci430-node-server.azurewebsites.net/notification/dealtWithStatus`;

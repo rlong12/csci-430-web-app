@@ -1,23 +1,61 @@
-require("dotenv").config();
-const { IgApiClient } = require('instagram-private-api');
-const { get } = require('request-promise');
+var postInstaModal = document.getElementById("postInstaModal");
+var postInstaXBtn = document.getElementById("postInstaXBtn");
 
-const postToInsta = async () => {
-    console.log(process.env.IG_USERNAME)
-    
-    const ig = new IgApiClient();
-    ig.state.generateDevice(process.env.IG_USERNAME);
-    await ig.account.login(process.env.IG_PASSWORD);
+let postInstaFooter = document.getElementById("postInstaFooter");
+let instaResultMessage = document.getElementById("instaResultMessage");
 
-    const imageBuffer = await get({
-        url: 'https://i.imgur.com/BZBHsauh.jpg',
-        encoding: null, 
-    });
+postInstaXBtn.onclick = function () {
+  postInstaModal.style.display = "none";
+};
 
-    await ig.publish.photo({
-        file: imageBuffer,
-        caption: 'Second test post', // nice caption (optional)
-    });
+window.onclick = function (event) {
+  if (event.target == postInstaModal) {
+    postInstaModal.style.display = "none";
+  }
+};
+
+let studyGroupName = "";
+
+function displayInstaModal(name) {
+    instaResultMessage.style.display = 'none';
+  document.getElementById("postInstaStudyGroup").innerHTML = "You have joined " + name + "!";
+  postInstaModal.style.display = "block";
+  studyGroupName = name;
 }
 
-postToInsta();
+function closeShareInstaModal() {
+    postInstaModal.style.display = 'none';
+}
+
+async function shareToInsta() {
+  let imageUrl = "https://upcdn.io/W142hJk/raw/demo/4kgZb1RC61.jpg";
+
+  const data = {
+    caption: "I just joined a new Study Group, " + studyGroupName + "!",
+    image_url: imageUrl,
+  };
+
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+
+  //let url = "http://127.0.0.1:3000/user/sp/insta-post";
+  let url = "https://csci430-node-server.azurewebsites.net/user/sp/insta-post";
+
+  let response = await fetch(url, options);
+
+  if (response.status === 201) {
+    console.log("instagram post successful!");
+    instaResultMessage.innerHTML = "Shared to instagram!";
+    instaResultMessage.style.display = 'block';
+  } else {
+    console.log("something went wrong");
+    instaResultMessage.innerHTML = "Failed to share...";
+    instaResultMessage.style.display = 'block';
+  }
+}

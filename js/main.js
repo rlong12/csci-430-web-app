@@ -6,6 +6,11 @@ if(token === null) {
 
 console.log("token: " + token)
 
+function clearLocalStorage() {
+    localStorage.removeItem('token');
+    console.log(localStorage.getItem('token'));
+}
+
 async function logout() {
     const url = "https://csci430-node-server.azurewebsites.net/user/logout"
     //const url = "http://127.0.0.1:3000/user/logout"

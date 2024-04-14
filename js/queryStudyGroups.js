@@ -366,6 +366,7 @@ function display(data) {
           successMessage.innerHTML = "Study Group joined!";
           successMessage.style.color = "#5cb85c";
           footer.appendChild(successMessage);
+          displayInstaModal(data.name);
         } else {
           console.log("Unable to join study group");
         }

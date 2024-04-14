@@ -11,6 +11,7 @@
         <button type="button" class="button" onclick="logout()" id="logoutButton">Logout</button>
         <button type="button" class="button" id="createStudyGroupButton">Create New Study Group</button>
         <button type="button" class="button" id="searchStudyGroupButton">Search Study Groups</button>
+        <button type="button" class="button" id="updateIgButton">Instagram Info</button>
         <button type="button" class="button" id="inboxButton">Inbox</button>
     </div>
 
@@ -371,6 +372,50 @@
                 <div class="modal-footer"></div>
             </div>
         </div>
+
+        <!-- Post to insta Modal -->
+        <div id="postInstaModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="postInstaXBtn" class="close">&times;</span>
+                    <h3 id="postInstaStudyGroup"></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <p>Share to Instagram?</p>
+                        <div class="modal-body">
+                            <button id="postInstaYes" onclick="shareToInsta()" type="button" class="button">Yes</button>
+                            <button id="postInstaNo" type="button" onclick="closeShareInstaModal()" class="button">No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" id="postInstaFooter">
+                    <p id="instaResultMessage"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Instagram Info Modal-->
+        <div id="updateIgModal" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="updateIgXBtn" class="close">&times;</span>
+                <h3 class="modalHeaderContent">Instagram Info</h2>
+              </div>
+              <div class="modal-body">
+                <div class="modal-body-content">
+                  <label for="newIgUsername">Username</label>
+                  <input class="input" type="text" id="newIgUsername">
+                  <label for="newIgPassword">Password</label>
+                  <input class="input" type="password" id="newIgPassword">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="button" id="updateIgInfoBtn" onclick="updateIgInfo()">Save</button>
+                <p id="updateIgInfoResultMessage"></p>
+              </div>
+            </div>
+          </div>
     </div>
 
     <script src="js/main.js"></script>
@@ -382,12 +427,23 @@
     <script src="js/invite.js"></script>
     <script src="js/inbox.js"></script>
     <script src="js/messageUser.js"></script>
+    <script src="js/postToInsta.js"></script>
+    <script src="js/updateIgInfo.js"></script>
 </body>
 
 <style>
+    #postInstaYes {
+        background-color: #5cb85c;
+    }
+
+    #postInstaNo {
+        background-color: red;
+    }
+
     #messageModal {
         z-index: 5;
     }
+
     #messageResultMessage {
         display: none;
     }
