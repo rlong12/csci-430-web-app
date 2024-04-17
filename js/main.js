@@ -6,6 +6,9 @@ if(token === null) {
 
 console.log("token: " + token)
 
+console.log(localStorage.getItem('instagramPassword'));
+console.log(localStorage.getItem('instagramUsername'));
+
 function clearLocalStorage() {
     localStorage.removeItem('token');
     console.log(localStorage.getItem('token'));

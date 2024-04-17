@@ -17,14 +17,53 @@ window.onclick = function (event) {
 let studyGroupName = "";
 
 function displayInstaModal(name) {
-    instaResultMessage.style.display = 'none';
-  document.getElementById("postInstaStudyGroup").innerHTML = "You have joined " + name + "!";
+  instaResultMessage.style.display = "none";
+  document.getElementById("postInstaStudyGroup").innerHTML =
+    "You have joined " + name + "!";
   postInstaModal.style.display = "block";
   studyGroupName = name;
 }
 
 function closeShareInstaModal() {
-    postInstaModal.style.display = 'none';
+  postInstaModal.style.display = "none";
+}
+
+async function checkInstaInfo() {
+  //let url = "http://127.0.0.1:3000/user";
+  let url = "https://csci430-node-server.azurewebsites.net/user";
+
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+
+  let response = await fetch(url, options);
+  let body = await response.json();
+  console.log(body);
+  console.log(body.ig_username, body.ig_password);
+  localStorage.setItem("instagramUsername", body.ig_username);
+  localStorage.setItem("instagramPassword", body.ig_passwords);
+
+  try {
+    if (
+      body.ig_username === undefined ||
+      body.ig_username === "" ||
+      body.ig_password === undefined ||
+      body.ig_password === ""
+    ) {
+      console.log("Insta info empty");
+      return false;
+    } else {
+      console.log("Insta info found");
+      return true;
+    }
+  } catch (e) {
+    console.log(e);
+    console.log("Unable to get user");
+    return;
+  }
 }
 
 async function shareToInsta() {
@@ -52,10 +91,10 @@ async function shareToInsta() {
   if (response.status === 201) {
     console.log("instagram post successful!");
     instaResultMessage.innerHTML = "Shared to instagram!";
-    instaResultMessage.style.display = 'block';
+    instaResultMessage.style.display = "block";
   } else {
     console.log("something went wrong");
     instaResultMessage.innerHTML = "Failed to share...";
-    instaResultMessage.style.display = 'block';
+    instaResultMessage.style.display = "block";
   }
 }

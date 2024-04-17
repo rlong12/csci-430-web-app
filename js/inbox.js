@@ -110,7 +110,31 @@ function loadNotifications(data) {
         inviteButtonsDiv.appendChild(successMessage);
         console.log("successfully accepted invite");
 
-        displayInstaModal(body.name);
+        let hasInstaInfo = await checkInstaInfo();
+          console.log("has insta info: " + hasInstaInfo);
+          if (hasInstaInfo) {
+            displayInstaModal(body.name);
+          } else {
+            console.log("No insta info");
+            displayUpdateIgModal();
+            console.log(localStorage.getItem("instagramPassword"));
+            console.log(
+              localStorage.getItem("instagramPassword") === "undefined"
+            );
+            let checkInstaInterval = setInterval(function () {
+              localStorage.setItem('checkInstaInterval', checkInstaInterval);
+              if (
+                localStorage.getItem("instagramPassword") === "undefined" ||
+                localStorage.getItem("instagramUsername") === "undefined"
+              ) {
+                console.log("waiting for insta info to be in local storage");
+              } else {
+                clearInterval(checkInstaInterval);
+                console.log("insta info found");
+                displayInstaModal(body.name);
+              }
+            }, 1000);
+          }
 
         //url = `http://127.0.0.1:3000/notification/dealtWithStatus`;
         url = `https://csci430-node-server.azurewebsites.net/notification/dealtWithStatus`;

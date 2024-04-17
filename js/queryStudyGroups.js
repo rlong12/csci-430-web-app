@@ -366,7 +366,31 @@ function display(data) {
           successMessage.innerHTML = "Study Group joined!";
           successMessage.style.color = "#5cb85c";
           footer.appendChild(successMessage);
-          displayInstaModal(data.name);
+          let hasInstaInfo = await checkInstaInfo();
+          console.log("has insta info: " + hasInstaInfo);
+          if (hasInstaInfo) {
+            displayInstaModal(data.name);
+          } else {
+            console.log("No insta info");
+            displayUpdateIgModal();
+            console.log(localStorage.getItem("instagramPassword"));
+            console.log(
+              localStorage.getItem("instagramPassword") === "undefined"
+            );
+            let checkInstaInterval = setInterval(function () {
+              localStorage.setItem('checkInstaInterval', checkInstaInterval);
+              if (
+                localStorage.getItem("instagramPassword") === "undefined" ||
+                localStorage.getItem("instagramUsername") === "undefined"
+              ) {
+                console.log("waiting for insta info to be in local storage");
+              } else {
+                clearInterval(checkInstaInterval);
+                console.log("insta info found");
+                displayInstaModal(data.name);
+              }
+            }, 1000);
+          }
         } else {
           console.log("Unable to join study group");
         }
