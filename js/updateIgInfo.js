@@ -40,8 +40,8 @@ async function updateIgInfo() {
   let username = document.getElementById("newIgUsername").value;
   let pw = document.getElementById("newIgPassword").value;
 
-  let url = "http://127.0.0.1:3000/user/sp/insta";
-  //let url = "https://csci430-node-server.azurewebsites.net/user/sp/insta";
+  //let url = "http://127.0.0.1:3000/user/sp/insta";
+  let url = "https://csci430-node-server.azurewebsites.net/user/sp/insta";
 
   const data = {
     ig_username: username,
