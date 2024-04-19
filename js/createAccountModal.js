@@ -33,6 +33,9 @@ async function createNewUser() {
   let userName = document.getElementById("username").value;
   let userMajorsString = document.getElementById("majors").value;
   let userMajors = userMajorsString.split(", ");
+  let igusername = document.getElementById('igUsername').value;
+  let igpassword = document.getElementById('igPassword').value;
+
   let fieldsPopulated = false;
   let passwordsMatch = false;
 
@@ -91,6 +94,8 @@ async function createNewUser() {
     password: pw,
     school: userSchool,
     majors: userMajors,
+    ig_username: igusername,
+    ig_password: igpassword,
   };
 
   const options = {

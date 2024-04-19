@@ -1,16 +1,8 @@
 // Get the modal
 var updateIgModal = document.getElementById("updateIgModal");
 
-// Get the button that opens the modal
-var updateIgBtn = document.getElementById("updateIgButton");
-
 // Get the <span> element that closes the modal
 var updateIgSpan = document.getElementById("updateIgXBtn");
-
-// When the user clicks the button, open the modal
-updateIgBtn.onclick = function () {
-  updateIgModal.style.display = "block";
-};
 
 // When the user clicks on <span> (x), close the modal
 function updateIgXBtnMethod() {

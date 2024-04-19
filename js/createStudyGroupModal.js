@@ -201,7 +201,7 @@ async function createNewStudyGroup() {
   const options = {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
@@ -214,6 +214,29 @@ async function createNewStudyGroup() {
       console.log("Study Group created!");
       createGroupModal.style.display = "none";
       requery();
+      let hasInstaInfo = await checkInstaInfo();
+      console.log("has insta info: " + hasInstaInfo);
+      if (hasInstaInfo) {
+        displayInstaModalFromCreate(groupName);
+      } else {
+        console.log("No insta info");
+        displayUpdateIgModal();
+        console.log(localStorage.getItem("instagramPassword"));
+        console.log(localStorage.getItem("instagramPassword") === "undefined");
+        let checkInstaInterval = setInterval(function () {
+          localStorage.setItem("checkInstaInterval", checkInstaInterval);
+          if (
+            localStorage.getItem("instagramPassword") === "undefined" ||
+            localStorage.getItem("instagramUsername") === "undefined"
+          ) {
+            console.log("waiting for insta info to be in local storage");
+          } else {
+            clearInterval(checkInstaInterval);
+            console.log("insta info found");
+            displayInstaModalFromCreate(groupName);
+          }
+        }, 1000);
+      }
     } else if (response.status == 400) {
       console.log("Unable to create study group");
     }

@@ -35,16 +35,16 @@ async function login() {
     document.querySelector("#loginError").style.display = "none";
     console.log("logged in successfully.");
     const body = await response.json();
+    const user = body.user;
+    console.log(body.user);
     console.log(body);
     console.log(JSON.stringify(body.user));
-    const user = JSON.stringify(body.user);
-    console.log(user);
     localStorage.setItem('instagramPassword', user.instagram_password);
     localStorage.setItem('instagramUsername', user.instagram_username);
     console.log(localStorage.getItem('instagramPassword'));
     console.log(localStorage.getItem('instagramUsername'));
 
-    localStorage.setItem("user", body.user);
+    localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", body.token);
     localStorage.setItem("userID", body.user._id);
 
