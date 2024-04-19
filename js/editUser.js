@@ -85,8 +85,8 @@ async function editUser() {
 
   let passwordsMatch = false;
 
-  let url = "http://127.0.0.1:3000/user";
-  //let url = "https://csci430-node-server.azurewebsites.net/user";
+  //let url = "http://127.0.0.1:3000/user";
+  let url = "https://csci430-node-server.azurewebsites.net/user";
 
   const data = {
     username: userName,
