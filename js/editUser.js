@@ -113,6 +113,8 @@ async function editUser() {
 
   if (response.status == 200) {
     console.log("User updated!");
+    p.innerHTML = "Profile updated!";
+    p.style.display = 'block';
     localStorage.setItem('user', JSON.stringify(body));
     loadProfile();
   } else if (response.status == 400) {

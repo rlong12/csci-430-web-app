@@ -59,6 +59,14 @@ async function updateIgInfo() {
       "Successfully saved info!";
       localStorage.setItem('instagramUsername', username);
       localStorage.setItem('instagramPassword', pw);
+
+      let user = JSON.parse(localStorage.getItem("user"));
+
+      user.ig_username = username;
+      user.ig_password = pw;
+
+      localStorage.setItem('user', JSON.stringify(user));
+
       return true;
   } else if (response.status == 400) {
     console.log("Unsuccessful");
