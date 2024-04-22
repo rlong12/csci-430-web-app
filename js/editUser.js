@@ -28,6 +28,8 @@ window.onclick = function (event) {
 };
 
 async function loadProfile() {
+  p.style.display = "none";
+
   let userEmail = document.getElementById("newEmail");
   //let pw = document.getElementById("newPw");
   let userSchool = document.getElementById("editAccountSchool");
@@ -70,8 +72,6 @@ function loadMajors(majors) {
 
 //get information from modal
 async function editUser() {
-  p.style.display = "none";
-
   let userEmail = document.getElementById("newEmail").value;
   //let pw = document.getElementById("newPw").value;
   let userSchool = document.getElementById("editAccountSchool").value;
