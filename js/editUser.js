@@ -16,6 +16,7 @@ editAccountButton.onclick = function () {
 // When the user clicks on <span> (x), close the modal
 editAccountXBtn.onclick = function () {
   editAccountModal.style.display = "none";
+  p.style.display = "none";
 };
 
 let p = document.getElementById("editAccountResult");
@@ -24,12 +25,11 @@ let p = document.getElementById("editAccountResult");
 window.onclick = function (event) {
   if (event.target == editAccountModal) {
     editAccountModal.style.display = "none";
+    p.style.display = "none";
   }
 };
 
 async function loadProfile() {
-  p.style.display = "none";
-
   let userEmail = document.getElementById("newEmail");
   //let pw = document.getElementById("newPw");
   let userSchool = document.getElementById("editAccountSchool");
