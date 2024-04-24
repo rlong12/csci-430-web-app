@@ -79,7 +79,7 @@ async function checkInstaInfo() {
 }
 
 async function shareToInsta() {
-  let imageUrl = "https://upcdn.io/W142hJk/raw/demo/4kgZb1RC61.jpg";
+  let imageUrl = "https://upcdn.io/W142hJk/raw/demo/4kfM5QEfGY.jpg";
 
   let data;
 
